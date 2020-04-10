@@ -39,8 +39,31 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+    // acquire delta time between this frame and last frame
+    float dt = ft.getFrameDeltaTime();
+    // screen movement input reading
+    float xScroll = 0.0f;
+    float yScroll = 0.0f;
+    if (wnd.kbd.KeyIsPressed(VK_DOWN))
+    {
+        yScroll = 1.0f;
+    }
+    if (wnd.kbd.KeyIsPressed(VK_UP))
+    {
+        yScroll = -1.0f;
+    }
+    if (wnd.kbd.KeyIsPressed(VK_LEFT))
+    {
+        xScroll = -1.0f;
+    }
+    if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+    {
+        xScroll = 1.0f;
+    }
+    board.update(xScroll, yScroll, dt);
 }
 
 void Game::ComposeFrame()
 {
+    board.drawBoard(gfx);
 }

@@ -307,12 +307,23 @@ void Graphics::BeginFrame()
 	memset( pSysBuffer,0u,sizeof( Color ) * Graphics::ScreenHeight * Graphics::ScreenWidth );
 }
 
+void Graphics::DrawRect(const Vec2& TopLeft, const Vec2& BottomRight, Color c)
+{
+	for(int x = int(TopLeft.x) ; x <= int(BottomRight.x) ; x++)
+	{
+		for(int y = int(TopLeft.y) ; y <= int(BottomRight.y) ; y++)
+		{
+			PutPixel(x, y, c);
+		}
+	}
+}
+
 void Graphics::PutPixel( int x,int y,Color c )
 {
-	//assert( x >= 0 );
-	//assert( x < int( Graphics::ScreenWidth ) );
-	//assert( y >= 0 );
-	//assert( y < int( Graphics::ScreenHeight ) );
+	assert( x >= 0 );
+	assert( x < int( Graphics::ScreenWidth ) );
+	assert( y >= 0 );
+	assert( y < int( Graphics::ScreenHeight ) );
 
 	// Asserts commented since shapes could need to be drawn partially close to borders
 	// Still, no pixels can be drawn off the border though

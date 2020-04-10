@@ -136,7 +136,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\GitLoadedStuff\Fart-Annoyed-Chili\Engine\Vec2.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliWin.h" />
@@ -152,9 +151,10 @@
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\GitLoadedStuff\Fart-Annoyed-Chili\Engine\Vec2.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
@@ -166,6 +166,8 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">

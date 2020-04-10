@@ -2,14 +2,23 @@
 #include "Screen.h"
 #include <vector>
 
+
 class Board
 {
+private:
+	// methods
+	int DrawLign(int lign, Graphics& gfx);
+	void DrawMargin(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx);
+	
 public:
 	// methods
 	Board();
 	~Board();
 
-
+	int x2Id(const Vec2& point);
+	int y2Id(const Vec2& point);
+	void update(float camXscroll, float camYscroll, float deltaTime);
+	void drawBoard(Graphics& gfx);
 private:
 // ___________
 	// inner class
@@ -20,11 +29,13 @@ private:
 		BoardTile(int xId, int yId);
 		~BoardTile();
 
+		int drawTile(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx);
+		void drawPerimeter(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx);
 	private:
 		BoardTile();
 		//members
-		Vec2 topLeft;
-		Vec2 bottomRight;
+		int xId;
+		int yId;
 	public:
 		//constants
 		static constexpr int tileWidth = 100;
@@ -34,7 +45,7 @@ private:
 
 private:
 	//members
-	std::vector<BoardTile> listTiles;
+	std::vector<std::vector<BoardTile>> listTiles;  // bi-dimensional vector, first index is X coordinate (columns) and second is Y coordinate (ligns)
 	Screen camera;
 public:
 	//constants
