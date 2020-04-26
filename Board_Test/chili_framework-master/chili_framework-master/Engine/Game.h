@@ -45,5 +45,6 @@ private:
 	/*  User Variables              */
     Board board;
     FrameTime ft;
+    EmoteHuman dude;
 	/********************************/
 };

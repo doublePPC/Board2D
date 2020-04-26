@@ -40,6 +40,12 @@
     <Filter Include="Source Files\Window">
       <UniqueIdentifier>{12031cc5-8cf4-4dfc-adc5-236b070d27ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EmoteGame">
+      <UniqueIdentifier>{7f89d9b6-dddb-43b2-9930-413ddb526709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EmoteGame">
+      <UniqueIdentifier>{cbaa1926-79d8-4023-990a-e3db615019db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -87,14 +93,20 @@
     <ClInclude Include="Screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec2.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
     <ClInclude Include="SpriteCodex.h">
       <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObject.h">
+      <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Generic</Filter>
+    </ClInclude>
+    <ClInclude Include="EmoteHuman.h">
+      <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,14 +143,20 @@
     <ClCompile Include="Screen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vec2.cpp">
       <Filter>Source Files\Generic</Filter>
     </ClCompile>
     <ClCompile Include="SpriteCodex.cpp">
       <Filter>Source Files\Sound&amp;Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Generic</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EmoteHuman.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

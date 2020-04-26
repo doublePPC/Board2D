@@ -27981,3 +27981,103 @@ void SpriteCodex::DrawPoo(const Vec2& center, Graphics& gfx)
 	gfx.PutPixel(5 + x_int, 23 + y_int, 51, 28, 0);
 	gfx.PutPixel(6 + x_int, 23 + y_int, 51, 28, 0);
 }
+
+void SpriteCodex::DrawCircle(const Vec2& topLeft, Graphics& gfx, Color baseColor)
+{
+	const int x = int(topLeft.x);
+	const int y = int(topLeft.y);
+
+	for (int i = 17; i < 17 + 8; i++) // drawing lign 0 and 41 
+	{
+		gfx.PutPixel(x + i, y, baseColor);
+		gfx.PutPixel(x + i, y + 41, baseColor);
+	}
+	for (int i = 16; i < 16 + 10; i++) // drawing lign 1 and 40 
+	{
+		gfx.PutPixel(x + i, y + 1, baseColor);
+		gfx.PutPixel(x + i, y + 40, baseColor);
+	}
+	for (int i = 15; i < 15 + 12; i++) // drawing lign 2 and 39 
+	{
+		gfx.PutPixel(x + i, y + 2, baseColor);
+		gfx.PutPixel(x + i, y + 39, baseColor);
+	}
+	for (int i = 14; i < 14 + 14; i++) // drawing lign 3 and 38 
+	{
+		gfx.PutPixel(x + i, y + 3, baseColor);
+		gfx.PutPixel(x + i, y + 38, baseColor);
+	}
+	for (int i = 12; i < 12 + 18; i++) // drawing lign 4 and 37 
+	{
+		gfx.PutPixel(x + i, y + 4, baseColor);
+		gfx.PutPixel(x + i, y + 37, baseColor);
+	}
+	for (int i = 10; i < 10 + 22; i++) // drawing lign 5 and 36 
+	{
+		gfx.PutPixel(x + i, y + 5, baseColor);
+		gfx.PutPixel(x + i, y + 36, baseColor);
+	}
+	for (int i = 8; i < 8 + 26; i++) // drawing lign 6 and 35 
+	{
+		gfx.PutPixel(x + i, y + 6, baseColor);
+		gfx.PutPixel(x + i, y + 35, baseColor);
+	}
+	for (int i = 7; i < 7 + 28; i++) // drawing lign 7 and 34 
+	{
+		gfx.PutPixel(x + i, y + 7, baseColor);
+		gfx.PutPixel(x + i, y + 34, baseColor);
+	}
+	for (int i = 6; i < 6 + 30; i++) // drawing lign 8 and 33 
+	{
+		gfx.PutPixel(x + i, y + 8, baseColor);
+		gfx.PutPixel(x + i, y + 33, baseColor);
+	}
+	for (int i = 5; i < 5 + 32; i++) // drawing lign 9 and 32 
+	{
+		gfx.PutPixel(x + i, y + 9, baseColor);
+		gfx.PutPixel(x + i, y + 32, baseColor);
+	}
+	for (int i = 4; i < 4 + 34; i++) // drawing lign 10 and 31 
+	{
+		gfx.PutPixel(x + i, y + 10, baseColor);
+		gfx.PutPixel(x + i, y + 31, baseColor);
+	}
+	for (int i = 3; i < 3 + 36; i++) // drawing lign 11 and 30 
+	{
+		gfx.PutPixel(x + i, y + 11, baseColor);
+		gfx.PutPixel(x + i, y + 30, baseColor);
+	}
+	for (int i = 3; i < 3 + 36; i++) // drawing lign 12 and 29 
+	{
+		gfx.PutPixel(x + i, y + 12, baseColor);
+		gfx.PutPixel(x + i, y + 29, baseColor);
+	}
+	for (int i = 2; i < 2 + 38; i++) // drawing lign 13 and 28 
+	{
+		gfx.PutPixel(x + i, y + 13, baseColor);
+		gfx.PutPixel(x + i, y + 28, baseColor);
+	}
+	for (int i = 2; i < 2 + 38; i++) // drawing lign 14 and 27 
+	{
+		gfx.PutPixel(x + i, y + 14, baseColor);
+		gfx.PutPixel(x + i, y + 27, baseColor);
+	}
+	for (int i = 1; i < 2 + 40; i++) // drawing lign 15 and 26 
+	{
+		gfx.PutPixel(x + i, y + 15, baseColor);
+		gfx.PutPixel(x + i, y + 26, baseColor);
+	}
+	for (int i = 1; i < 2 + 40; i++) // drawing lign 16 and 25 
+	{
+		gfx.PutPixel(x + i, y + 16, baseColor);
+		gfx.PutPixel(x + i, y + 25, baseColor);
+	}
+	for (int j = 0; j < 4; j++) // last 4 ligns, no horizontal change
+	{
+		for (int i = 0; i < 0 + 42; i++) // drawing ligns from 17 to 24 
+		{
+			gfx.PutPixel(x + i, y + 17 + j, baseColor);
+			gfx.PutPixel(x + i, y + 24 - j, baseColor);
+		}
+	}
+}

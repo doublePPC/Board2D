@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-    board(Board())
+    board(Board()),
+    dude(EmoteHuman(Vec2(379.0f, 279.0f), Colors::Yellow))
 {
 }
 
@@ -66,4 +67,5 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
     board.drawBoard(gfx);
+    dude.drawObject(gfx);
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphics.h"
+#include "EmoteHuman.h"
 
 class Screen
 {
