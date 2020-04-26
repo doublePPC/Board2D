@@ -93,6 +93,9 @@
     <ClInclude Include="Vec2.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteCodex.h">
+      <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Vec2.cpp">
       <Filter>Source Files\Generic</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteCodex.cpp">
+      <Filter>Source Files\Sound&amp;Graphic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
