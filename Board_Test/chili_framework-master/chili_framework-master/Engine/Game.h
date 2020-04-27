@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Board.h"
 #include "Time.h"
+#include "EmoteHuman.h"
 
 class Game
 {
