@@ -46,6 +46,9 @@
     <Filter Include="Source Files\EmoteGame">
       <UniqueIdentifier>{cbaa1926-79d8-4023-990a-e3db615019db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Board">
+      <UniqueIdentifier>{385104ca-75e1-43ed-9944-ad03dc459997}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -87,12 +90,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec2.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
@@ -107,6 +104,15 @@
     </ClInclude>
     <ClInclude Include="EmoteHuman.h">
       <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardGenericData.h">
+      <Filter>Header Files\Board</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

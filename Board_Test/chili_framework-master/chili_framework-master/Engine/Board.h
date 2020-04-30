@@ -1,24 +1,22 @@
 #pragma once
 #include "Screen.h"
-#include <vector>
 
 
 class Board
 {
 private:
 	// methods
-	int DrawLign(int lign, Graphics& gfx);
 	void DrawMargin(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx);
-	
 public:
 	// methods
 	Board();
 	~Board();
 
-	int x2Id(const Vec2& point);
-	int y2Id(const Vec2& point);
+	int pos2Id(const Vec2& point);
 	void update(float camXscroll, float camYscroll, float deltaTime);
-	void drawBoard(Graphics& gfx);
+	void draw(Graphics& gfx);
+	void toggleGridView();
+	std::pair<int,int> rowColToDrawFromTopLeft();
 private:
 // ___________
 	// inner class
@@ -26,29 +24,22 @@ private:
 	{
 	public:
 		// methods
-		BoardTile(int xId, int yId);
+		BoardTile(int Id);
 		~BoardTile();
 
-		int drawTile(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx);
-		void drawPerimeter(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx);
+		TilePortion getVisiblePart(const Vec2& cameraTopLeft);
+		void drawPerimeter(const Vec2& cameraTopLeft, Graphics& gfx, Color gridColor);
+		Vec2 getTopLeft();
+		Vec2 getBottomRight();
 	private:
-		BoardTile();
 		//members
-		int xId;
-		int yId;
-	public:
-		//constants
-		static constexpr int tileWidth = 100;
-		static constexpr int tileHeight = 100;
+		int id;
 	};
 // ----------
-
 private:
 	//members
-	std::vector<std::vector<BoardTile>> listTiles;  // bi-dimensional vector, first index is X coordinate (columns) and second is Y coordinate (ligns)
+	std::vector<BoardTile> listTiles;
 	Screen camera;
-public:
-	//constants
-	static constexpr int width = 16;
-	static constexpr int height = 16;
+	bool gridViewable;
+	Color gridColor;
 };

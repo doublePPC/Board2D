@@ -1,15 +1,16 @@
 #pragma once
-#include "Graphics.h"
+#include "BoardGenericData.h"
 
 class Screen
 {
 public:
 	Screen();
-	Screen(int xLimit, int yLimit);
-	Screen(int xLimit, int yLimit, Vec2 startPos);
+	Screen(float limitX, float limitY);
 	~Screen();
 
 	void update(float xMov, float yMov, float deltaTime);
+	void instantMove(Vec2 newTopleft);
+	Vec2 convertPos(const Vec2& posToConvert);
 private:
 	int limitWidth;
 	int limitHeight;
@@ -18,5 +19,4 @@ public:
 	// public members
 	Vec2 bottomRight;
 	Vec2 topLeft;
-	static constexpr float defaultScrollSpeed = 120.0f;
 };

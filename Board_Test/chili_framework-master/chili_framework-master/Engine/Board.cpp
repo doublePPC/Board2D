@@ -1,36 +1,11 @@
 #include "Board.h"
+#include <assert.h>
 
 /* ------------------------------
 	   Board class section
    ------------------------------ */
 
 // Private Methods
-int Board::DrawLign(int lign, Graphics& gfx)
-{
-	int widthToDraw = Graphics::ScreenWidth;
-	int cycleCounter = x2Id(camera.topLeft);
-	while (widthToDraw > 0 && cycleCounter < Board::width)
-	{
-		widthToDraw = widthToDraw - listTiles[cycleCounter][lign].drawTile(camera.topLeft, camera.bottomRight, gfx);
-		cycleCounter++;
-	}
-	// once the lign is drawn, return the amount of pixels it takes vertically on the screen
-	if (camera.topLeft.y > lign * BoardTile::tileHeight)
-	{
-		// the topLeft of the camera is vertically in the lign (so, only a portion of the tile as been drawn)
-		return BoardTile::tileHeight - camera.topLeft.y;
-	}
-	else if (camera.bottomRight.y < lign * BoardTile::tileHeight + (BoardTile::tileHeight - 1))
-	{
-		// the bottomRight of the camera is above the end of the lign (so, only a portion of the tile as been drawn)
-		return camera.bottomRight.y - lign * BoardTile::tileHeight;
-	}
-	else
-	{
-		// the topLeft of the camera is above the lign and bottomRight is below (so, the whole vertical size of the tile as been drawn)
-		return BoardTile::tileHeight;
-	}
-}
 
 void Board::DrawMargin(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx)
 {
@@ -43,18 +18,14 @@ void Board::DrawMargin(const Vec2& topLeft, const Vec2& bottomRight, Graphics& g
 // Constructor and Destructor
 Board::Board()
 	:
-	camera(Screen(Board::width * BoardTile::tileWidth, Board::height * BoardTile::tileHeight)),
-	listTiles(Board::width)
+	camera(Screen(BrdData::Columns * BrdData::Tile_Width -1, BrdData::Rows * BrdData::Tile_Height -1))
 {
-	for (int i = 0; i < Board::width; i++)
+	for (int i = 0; i < BrdData::Columns * BrdData::Rows; i++)
 	{
-		std::vector<BoardTile> tempVect;
-		for (int j = 0; j < Board::height; j++)
-		{
-			tempVect.push_back(BoardTile(i, j)); 
-		}
-		listTiles[i] = tempVect;
+		listTiles.push_back(BoardTile(i));
 	}
+	gridColor = Colors::Gray;
+	gridViewable = BrdData::Grid_DefaultViewable;
 }
 
 Board::~Board()
@@ -63,16 +34,11 @@ Board::~Board()
 }
 
 // Public Methods
-int Board::x2Id(const Vec2& point)
+int Board::pos2Id(const Vec2& point)
 {
-	// tells in which column the point is
-	return int(point.x / BoardTile::tileWidth);
-}
-
-int Board::y2Id(const Vec2& point)
-{
-	// tells in which lign the point is
-	return int(point.y / BoardTile::tileHeight);
+	int xId = int(point.x) / BrdData::Tile_Width;
+	int yId = int(point.y) / BrdData::Tile_Height;
+	return int(yId * BrdData::Columns + xId);
 }
 
 void Board::update(float camXscroll, float camYscroll, float deltaTime)
@@ -80,130 +46,200 @@ void Board::update(float camXscroll, float camYscroll, float deltaTime)
 	camera.update(camXscroll, camYscroll, deltaTime);
 }
 
-void Board::drawBoard(Graphics& gfx)
+void Board::draw(Graphics& gfx)
 {
-	// find the first lign of tiles to draw
-	int lignToDraw = y2Id(camera.topLeft);
-	int heightToDraw = Graphics::ScreenHeight;
-	while (heightToDraw > 0 && lignToDraw < Board::height)
+	std::pair<int, int> rowCol = rowColToDrawFromTopLeft();
+	int startId = pos2Id(camera.topLeft);
+	for (int i = 0 ; i < rowCol.second ; i++)
 	{
-		heightToDraw = heightToDraw - DrawLign(lignToDraw, gfx);
-		lignToDraw++;
+		for (int j = 0 ; j < rowCol.first ; j++)
+		{
+			int tileId = i * BrdData::Columns + startId + j;
+			listTiles[tileId].drawPerimeter(camera.topLeft, gfx, gridColor) ;
+		}
 	}
 }
 
+void Board::toggleGridView()
+{
+	gridViewable = !gridViewable;
+}
+
+std::pair<int,int> Board::rowColToDrawFromTopLeft()
+{
+	int amountOfCol = 0;
+	int amountOfRow = 0;
+	if (int(camera.topLeft.x) + Graphics::ScreenWidth >= BrdData::Columns * BrdData::Tile_Width)
+	{
+		// there is not enough tiles left in the row to fill the screen size
+		amountOfCol = ((BrdData::Columns * BrdData::Tile_Width) - int(camera.topLeft.x)) / BrdData::Tile_Width;
+		if (((BrdData::Columns * BrdData::Tile_Width) - int(camera.topLeft.x)) % BrdData::Tile_Width > 0)
+		{
+			amountOfCol++;
+		}
+	}
+	else
+	{
+		// there is enough tiles left in the row to fill the screen
+		amountOfCol = Graphics::ScreenWidth / BrdData::Tile_Width;
+		if (listTiles[pos2Id(camera.topLeft)].getTopLeft().x != camera.topLeft.x)
+		{
+			amountOfCol++;
+		}
+	}
+	if (int(camera.topLeft.y) + Graphics::ScreenHeight >= BrdData::Rows * BrdData::Tile_Height)
+	{
+		// there is not enough tiles left in the column to fill the screen size
+		amountOfRow = ((BrdData::Rows * BrdData::Tile_Height) - int(camera.topLeft.y)) / BrdData::Tile_Height;
+		if (((BrdData::Rows * BrdData::Tile_Height) - int(camera.topLeft.y)) % BrdData::Tile_Height > 0)
+		{
+			amountOfRow++;
+		}
+	}
+	else
+	{
+		// there is enough tiles left in the column to fill the screen
+		amountOfRow = Graphics::ScreenHeight / BrdData::Tile_Height;
+		if (listTiles[pos2Id(camera.topLeft)].getTopLeft().y != camera.topLeft.y)
+		{
+			amountOfRow++;
+		}
+	}
+	return std::pair<int,int>(amountOfCol, amountOfRow);
+}
 
 /* ------------------------
       Tiles class section
    ------------------------ */
 
-Board::BoardTile::BoardTile(int xId, int yId)
+Board::BoardTile::BoardTile(int Id)
 {
-	this->xId = xId;
-	this->yId = yId;
+	id = Id;
 }
 
 Board::BoardTile::~BoardTile()
 {
 }
 
-int Board::BoardTile::drawTile(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx)
+TilePortion Board::BoardTile::getVisiblePart(const Vec2& cameraTopLeft)
 {
-	drawPerimeter(topLeft, bottomRight, gfx);
-	// once the tile is drawn, return the amount of pixels it takes horizontally on the screen
-	if (topLeft.x > xId * BoardTile::tileWidth)
+	Vec2 convertedTopLeft = getTopLeft() - cameraTopLeft;
+	Vec2 convertedBottomRight = getBottomRight() - cameraTopLeft;
+	Vec2 visibleTopLeft = Vec2(0.0f,0.0f), visibleBottomRight = Vec2(0.0f,0.0f);
+	// check for topLeft visibility
+	if (convertedTopLeft.x >= 0.0f && convertedTopLeft.x < float(Graphics::ScreenWidth))
 	{
-		// the topLeft of the camera is horizontally in the column (so, only a portion of the tile as been drawn)
-		return BoardTile::tileWidth - topLeft.x;
+		// topLeft.x is visible
+		if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
+		{
+			// topLeft.y is also visible
+			visibleTopLeft = convertedTopLeft;
+		}
+		else if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
+		{
+			// visible topLeft.y must become top screen since its bottomRight.y is on screen
+			visibleTopLeft = Vec2(convertedTopLeft.x, 0.0f);
+		}
 	}
-	else if (bottomRight.x < xId * BoardTile::tileWidth + (BoardTile::tileWidth - 1))
+	else if (convertedBottomRight.x >= 0.0f && convertedBottomRight.x < float(Graphics::ScreenWidth))
 	{
-		// the bottomRight of the camera is to the left the end of the tile (so, only a portion of the tile as been drawn)
-		return bottomRight.x - xId * BoardTile::tileWidth;
+		// topLeft.x isn't on screen, but bottomRight.x is
+		if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
+		{
+			// topLeft.y is visible though
+			visibleTopLeft = Vec2(0.0f, convertedTopLeft.y);
+		}		
 	}
-	else
+	// check for bottomRight visibility 
+	if (convertedBottomRight.x >= 0.0f && convertedBottomRight.x < float(Graphics::ScreenWidth))
 	{
-		// the topLeft of the camera is to the left and bottomRight is to the right (so, the whole horizontal size of the tile as been drawn)
-		return BoardTile::tileWidth;
+		// bottomRight.x is visible
+		if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
+		{
+			// bottomRight.y is also visible
+			visibleBottomRight = convertedBottomRight;
+		}
+		else if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
+		{
+			// visible bottomRight.y must become bottom screen since its topLeft.y is on the screen
+			visibleBottomRight = Vec2(convertedBottomRight.x, float(Graphics::ScreenHeight - 1));
+		}
+	}
+	else if (convertedTopLeft.x >= 0.0f && convertedTopLeft.x < float(Graphics::ScreenWidth))
+	{
+		// bottomRight.x isn't visible, but topLeft.x is
+		if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
+		{
+			// bottomRight.y is visible though
+			visibleBottomRight = Vec2(float(Graphics::ScreenWidth - 1), convertedBottomRight.y);
+		}
+		else
+		{
+			visibleBottomRight = Vec2(float(Graphics::ScreenWidth - 1), float(Graphics::ScreenHeight - 1));
+		}
+	}
+	return TilePortion{ visibleTopLeft, visibleBottomRight };
+}
+
+void Board::BoardTile::drawPerimeter(const Vec2& cameraTopLeft, Graphics& gfx, Color gridColor)
+{
+	TilePortion visibleArea = getVisiblePart(cameraTopLeft);
+	if (visibleArea.bottomRight.x - visibleArea.topLeft.x > 0.0f)
+	{
+		// tile is visible
+		if (visibleArea.topLeft.x == getTopLeft().x - cameraTopLeft.x)
+		{
+			// drawing Left side
+			assert(visibleArea.topLeft.y >= 0.0f);
+			assert(visibleArea.bottomRight.y < float(Graphics::ScreenHeight));
+			for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
+			{
+				gfx.PutPixel(int(visibleArea.topLeft.x), i, gridColor);
+			}
+		}
+		if (visibleArea.topLeft.y == getTopLeft().y - cameraTopLeft.y)
+		{
+			// drawing Top side
+			assert(visibleArea.topLeft.x >= 0.0f);
+			assert(visibleArea.bottomRight.x < float(Graphics::ScreenWidth));
+			for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
+			{
+				gfx.PutPixel(i, int(visibleArea.topLeft.y), gridColor);
+			}
+		}
+		if (visibleArea.bottomRight.x == getBottomRight().x - cameraTopLeft.x)
+		{
+			// drawing Right side
+			assert(visibleArea.topLeft.y >= 0.0f);
+			assert(visibleArea.bottomRight.y < float(Graphics::ScreenHeight));
+			for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
+			{
+				gfx.PutPixel(int(visibleArea.bottomRight.x), i, gridColor);
+			}
+		}
+		if (visibleArea.bottomRight.y == getBottomRight().y - cameraTopLeft.y)
+		{
+			// drawing Bottom side
+			assert(visibleArea.topLeft.x >= 0.0f);
+			assert(visibleArea.bottomRight.x < float(Graphics::ScreenWidth));
+			for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
+			{
+				gfx.PutPixel(i, int(visibleArea.bottomRight.y), gridColor);
+			}
+		}
 	}
 }
 
-void Board::BoardTile::drawPerimeter(const Vec2& topLeft, const Vec2& bottomRight, Graphics& gfx)
+Vec2 Board::BoardTile::getTopLeft()
 {
-	// define if starting point is camera's topLeft or tile's topLeft
-	Vec2 start = Vec2(xId * BoardTile::tileWidth, yId * BoardTile::tileHeight);
-	Vec2 end = Vec2(start.x + (BoardTile::tileWidth - 1), start.y + (BoardTile::tileHeight - 1));
-	if (start.x < topLeft.x)
-	{
-		// the tile's left isn't on the screen
-		start = Vec2(topLeft.x, start.y);
-	}
-	if (start.y < topLeft.y)
-	{
-		// the tile's top isn't on the screen
-		start = Vec2(start.x, topLeft.y);
-	}
-	if (end.x > bottomRight.x)
-	{
-		// the tile's right isn't on the screen
-		end = Vec2(bottomRight.x, end.y);
-	}
-	if (end.y > bottomRight.y)
-	{
-		// the tile's bottom isn't on the screen
-		end = Vec2(end.x, bottomRight.y);
-	}
-	// convert the starting point's board coordinate into the window coordinate
-	int convertedX = start.x - topLeft.x;
-	int convertedY = start.y - topLeft.y;
-	// Left side
-	if (topLeft.x <= xId * BoardTile::tileWidth)
-	{
-		for (int i = 0; i < end.y - start.y; i++)
-		{
-			if (convertedX < Graphics::ScreenWidth && convertedX >= 0
-				&& convertedY + i < Graphics::ScreenHeight && convertedY + i >= 0)
-			{
-				gfx.PutPixel(convertedX, convertedY + i, Colors::Gray);
-			}
-		}
-	}
-	// Top side
-	if (topLeft.y <= yId * BoardTile::tileHeight)
-	{
-		for (int i = 0; i < end.x - start.x; i++)
-		{
-			if (convertedX + i < Graphics::ScreenWidth && convertedX + i >= 0
-				&& convertedY < Graphics::ScreenHeight && convertedY >= 0)
-			{
-				gfx.PutPixel(convertedX + i, convertedY, Colors::Gray);
-			}
-			
-		}
-	}
-	// Right side
-	if (bottomRight.x >= xId * BoardTile::tileWidth + (BoardTile::tileWidth - 1))
-	{
-		for (int i = 0; i < end.y - start.y; i++)
-		{
-			if (convertedX + end.x - start.x < Graphics::ScreenWidth && convertedX + end.x - start.x >= 0
-				&& convertedY + i < Graphics::ScreenHeight && convertedY + i >= 0)
-			{
-				gfx.PutPixel(convertedX + end.x - start.x, convertedY + i, Colors::Gray);
-			}
-			
-		}
-	}
-	// Bottom side
-	if (bottomRight.y >= yId * BoardTile::tileHeight + (BoardTile::tileHeight - 1))
-	{
-		for (int i = 0; i < end.x - start.x; i++)
-		{
-			if (convertedX + i < Graphics::ScreenWidth && convertedX + i >= 0
-				&& convertedY + end.y - start.y < Graphics::ScreenHeight && convertedY + end.y - start.y >= 0)
-			{
-				gfx.PutPixel(convertedX + i, convertedY + end.y - start.y, Colors::Gray);
-			}
-		}
-	}
+	float xValue = float((id % BrdData::Columns) * BrdData::Tile_Width);
+	float yValue = float((id / BrdData::Columns) * BrdData::Tile_Height);
+	return Vec2(xValue, yValue);
+}
+
+Vec2 Board::BoardTile::getBottomRight()
+{
+	float xValue = float((id % BrdData::Columns) * BrdData::Tile_Width + BrdData::Tile_Width -1);
+	float yValue = float((id / BrdData::Columns) * BrdData::Tile_Height + BrdData::Tile_Height -1);
+	return Vec2(xValue, yValue);
 }

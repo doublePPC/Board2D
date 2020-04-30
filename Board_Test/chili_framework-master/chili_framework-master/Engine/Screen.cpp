@@ -3,31 +3,21 @@
 Screen::Screen()
 {
 	// use this constructor for a fixed screen with the size of the window
+	limitWidth = BrdData::Cam_X_Size;
+	limitHeight = BrdData::Cam_Y_Size;
 	topLeft = Vec2(0, 0);
-	bottomRight = Vec2(Graphics::ScreenWidth -1.0f, Graphics::ScreenHeight -1.0f);
-	limitWidth = Graphics::ScreenWidth;
-	limitHeight = Graphics::ScreenHeight;
-	scrollSpeed = Screen::defaultScrollSpeed;
+	bottomRight = Vec2(limitWidth -1.0f, limitHeight -1.0f);
+	scrollSpeed = float(BrdData::Cam_Speed);
 }
 
-Screen::Screen(int xLimit, int yLimit)
+Screen::Screen(float limitX, float limitY)
 {
-	// use this constructor to define the limit of the board with default starting position
+	// use this constructor for a camera on a board larger than the screen
+	limitWidth = limitX;
+	limitHeight = limitY;
 	topLeft = Vec2(0, 0);
-	bottomRight = Vec2(topLeft.x + Graphics::ScreenWidth -1.0f, topLeft.y + Graphics::ScreenHeight -1.0f);
-	limitWidth = xLimit;
-	limitHeight = yLimit;
-	scrollSpeed = Screen::defaultScrollSpeed;
-}
-
-Screen::Screen(int xLimit, int yLimit, Vec2 startPos)
-{
-	// use this constructor to define the limit of the board and to set a starting position
-	topLeft = startPos;
-	bottomRight = Vec2(startPos.x + Graphics::ScreenWidth -1.0f, startPos.y + Graphics::ScreenHeight -1.0f);
-	limitWidth = xLimit;
-	limitHeight = yLimit;
-	scrollSpeed = Screen::defaultScrollSpeed;
+	bottomRight = Vec2(BrdData::Cam_X_Size - 1.0f, BrdData::Cam_Y_Size - 1.0f);
+	scrollSpeed = float(BrdData::Cam_Speed);
 }
 
 Screen::~Screen()
@@ -36,16 +26,16 @@ Screen::~Screen()
 
 void Screen::update(float xMov, float yMov, float deltaTime)
 {
-	float horiMov = xMov * scrollSpeed * deltaTime;
-	float vertMov = yMov * scrollSpeed * deltaTime;
+	int horiMov = int(xMov * scrollSpeed * deltaTime);
+	int vertMov = int(yMov * scrollSpeed * deltaTime);
 	// horizontal camera movement
-	if (bottomRight.x + horiMov >= float(limitWidth))
+	if (int(bottomRight.x) + horiMov >= limitWidth)
 	{
 		// the camera new position would be beyond the right limit
 		bottomRight = Vec2(float(limitWidth), bottomRight.y);
-		topLeft = Vec2(bottomRight.x - float(Graphics::ScreenWidth), topLeft.y);
+		topLeft = Vec2(bottomRight.x - float(Graphics::ScreenWidth - 1), topLeft.y);
 	}
-	else if (topLeft.x + horiMov < 0.0f)
+	else if (int(topLeft.x) + horiMov < 0)
 	{
 		// the camera new position would be beyond the left limit
 		topLeft = Vec2(0.0f, topLeft.y);
@@ -54,17 +44,17 @@ void Screen::update(float xMov, float yMov, float deltaTime)
 	else
 	{
 		// the camera new position is between the board boundaries
-		topLeft += Vec2(horiMov, 0.0f);
-		bottomRight += Vec2(horiMov, 0.0f);
+		topLeft += Vec2(float(horiMov), 0.0f);
+		bottomRight += Vec2(float(horiMov), 0.0f);
 	}
 	// vertical camera movement
-	if (bottomRight.y + vertMov >= float(limitHeight))
+	if (int(bottomRight.y) + vertMov >= limitHeight)
 	{
 		// the camera new position would be beyond the bottom limit
 		bottomRight = Vec2(bottomRight.x, float(limitHeight));
-		topLeft = Vec2(topLeft.x, bottomRight.y - float(Graphics::ScreenHeight));
+		topLeft = Vec2(topLeft.x, bottomRight.y - float(Graphics::ScreenHeight - 1));
 	}
-	else if (topLeft.y + vertMov < 0.0f)
+	else if (int(topLeft.y) + vertMov < 0)
 	{
 		// the camera new position would be beyond the top limit
 		topLeft = Vec2(topLeft.x, 0.0f);
@@ -73,8 +63,19 @@ void Screen::update(float xMov, float yMov, float deltaTime)
 	else
 	{
 		// the camera new position is between vertical boundaries
-		topLeft += Vec2(0.0f, vertMov);
-		bottomRight += Vec2(0.0f, vertMov);
+		topLeft += Vec2(0.0f, float(vertMov));
+		bottomRight += Vec2(0.0f, float(vertMov));
 	}
+}
+
+void Screen::instantMove(Vec2 newTopleft)
+{
+
+}
+
+Vec2 Screen::convertPos(const Vec2& posToConvert)
+{
+	// returns a vector with screen coordinates instead of board coordinates
+	return Vec2(posToConvert.x - topLeft.x, posToConvert.y - topLeft.y);
 }
 

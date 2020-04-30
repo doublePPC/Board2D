@@ -62,10 +62,14 @@ void Game::UpdateModel()
         xScroll = 1.0f;
     }
     board.update(xScroll, yScroll, dt);
+    if (wnd.kbd.KeyIsPressed('D'))
+    {
+        bool dude = true;
+    }
 }
 
 void Game::ComposeFrame()
 {
-    board.drawBoard(gfx);
+    board.draw(gfx);
     dude.drawObject(gfx);
 }
