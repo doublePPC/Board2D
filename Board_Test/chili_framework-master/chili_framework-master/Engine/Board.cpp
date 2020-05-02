@@ -69,42 +69,57 @@ std::pair<int,int> Board::rowColToDrawFromTopLeft()
 {
 	int amountOfCol = 0;
 	int amountOfRow = 0;
-	if (int(camera.topLeft.x) + Graphics::ScreenWidth >= BrdData::Columns * BrdData::Tile_Width)
+	if (Graphics::ScreenWidth >= BrdData::Columns * BrdData::Tile_Width)
 	{
-		// there is not enough tiles left in the row to fill the screen size
-		amountOfCol = ((BrdData::Columns * BrdData::Tile_Width) - int(camera.topLeft.x)) / BrdData::Tile_Width;
-		if (((BrdData::Columns * BrdData::Tile_Width) - int(camera.topLeft.x)) % BrdData::Tile_Width > 0)
+		amountOfCol = BrdData::Columns;
+	}
+	else
+	{ 
+		if (int(camera.topLeft.x) + Graphics::ScreenWidth >= BrdData::Columns * BrdData::Tile_Width)
 		{
-			amountOfCol++;
+			// there is not enough tiles left in the row to fill the screen size
+			amountOfCol = ((BrdData::Columns * BrdData::Tile_Width) - int(camera.topLeft.x)) / BrdData::Tile_Width;
+			if (((BrdData::Columns * BrdData::Tile_Width) - int(camera.topLeft.x)) % BrdData::Tile_Width > 0)
+			{
+				amountOfCol++;
+			}
 		}
+		else
+		{
+			// there is enough tiles left in the row to fill the screen
+			amountOfCol = Graphics::ScreenWidth / BrdData::Tile_Width;
+			if (listTiles[pos2Id(camera.topLeft)].getTopLeft().x != camera.topLeft.x)
+			{
+				amountOfCol++;
+			}
+		}
+	}
+	if (Graphics::ScreenHeight >= BrdData::Rows * BrdData::Tile_Height)
+	{
+		amountOfRow = BrdData::Rows;
 	}
 	else
 	{
-		// there is enough tiles left in the row to fill the screen
-		amountOfCol = Graphics::ScreenWidth / BrdData::Tile_Width;
-		if (listTiles[pos2Id(camera.topLeft)].getTopLeft().x != camera.topLeft.x)
+		if (int(camera.topLeft.y) + Graphics::ScreenHeight >= BrdData::Rows * BrdData::Tile_Height)
 		{
-			amountOfCol++;
+			// there is not enough tiles left in the column to fill the screen size
+			amountOfRow = ((BrdData::Rows * BrdData::Tile_Height) - int(camera.topLeft.y)) / BrdData::Tile_Height;
+			if (((BrdData::Rows * BrdData::Tile_Height) - int(camera.topLeft.y)) % BrdData::Tile_Height > 0)
+			{
+				amountOfRow++;
+			}
+		}
+		else
+		{
+			// there is enough tiles left in the column to fill the screen
+			amountOfRow = Graphics::ScreenHeight / BrdData::Tile_Height;
+			if (listTiles[pos2Id(camera.topLeft)].getTopLeft().y != camera.topLeft.y)
+			{
+				amountOfRow++;
+			}
 		}
 	}
-	if (int(camera.topLeft.y) + Graphics::ScreenHeight >= BrdData::Rows * BrdData::Tile_Height)
-	{
-		// there is not enough tiles left in the column to fill the screen size
-		amountOfRow = ((BrdData::Rows * BrdData::Tile_Height) - int(camera.topLeft.y)) / BrdData::Tile_Height;
-		if (((BrdData::Rows * BrdData::Tile_Height) - int(camera.topLeft.y)) % BrdData::Tile_Height > 0)
-		{
-			amountOfRow++;
-		}
-	}
-	else
-	{
-		// there is enough tiles left in the column to fill the screen
-		amountOfRow = Graphics::ScreenHeight / BrdData::Tile_Height;
-		if (listTiles[pos2Id(camera.topLeft)].getTopLeft().y != camera.topLeft.y)
-		{
-			amountOfRow++;
-		}
-	}
+	
 	return std::pair<int,int>(amountOfCol, amountOfRow);
 }
 

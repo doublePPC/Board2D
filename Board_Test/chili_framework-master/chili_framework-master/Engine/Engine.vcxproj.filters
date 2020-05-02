@@ -49,6 +49,9 @@
     <Filter Include="Header Files\Board">
       <UniqueIdentifier>{385104ca-75e1-43ed-9944-ad03dc459997}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Board">
+      <UniqueIdentifier>{dde2672e-9d8d-4d2f-bb5b-013be008226f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -143,12 +146,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vec2.cpp">
       <Filter>Source Files\Generic</Filter>
     </ClCompile>
@@ -162,7 +159,13 @@
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
     <ClCompile Include="EmoteHuman.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\EmoteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files\Board</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
