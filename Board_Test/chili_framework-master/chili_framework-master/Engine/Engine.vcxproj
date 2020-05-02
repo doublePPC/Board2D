@@ -150,6 +150,7 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MapObject.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="ObjectDrawer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Sound.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="ObjectDrawer.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />

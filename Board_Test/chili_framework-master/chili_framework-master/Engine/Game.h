@@ -22,9 +22,8 @@
 
 #include "Keyboard.h"
 #include "Mouse.h"
-#include "Board.h"
 #include "Time.h"
-#include "EmoteHuman.h"
+#include "ObjectDrawer.h"
 
 class Game
 {
