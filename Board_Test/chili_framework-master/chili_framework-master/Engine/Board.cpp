@@ -26,6 +26,7 @@ Board::Board()
 	}
 	gridColor = Colors::Gray;
 	gridViewable = BrdData::Grid_DefaultViewable;
+	camera.alignCenter();
 }
 
 Board::~Board()
@@ -55,7 +56,7 @@ void Board::draw(Graphics& gfx)
 		for (int j = 0 ; j < rowCol.first ; j++)
 		{
 			int tileId = i * BrdData::Columns + startId + j;
-			listTiles[tileId].drawPerimeter(camera.topLeft, gfx, gridColor) ;
+			listTiles[tileId].drawPerimeter(camera.getOffsetTopLeft(), gfx, gridColor) ;
 		}
 	}
 }
