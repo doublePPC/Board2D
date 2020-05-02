@@ -2,19 +2,22 @@
 
 Screen::Screen()
 {
-	// use this constructor for a fixed screen with the size of the window
-	limitWidth = BrdData::Cam_X_Size;
-	limitHeight = BrdData::Cam_Y_Size;
-	topLeft = Vec2(0, 0);
-	bottomRight = Vec2(limitWidth -1.0f, limitHeight -1.0f);
-	scrollSpeed = float(BrdData::Cam_Speed);
-}
-
-Screen::Screen(float limitX, float limitY)
-{
-	// use this constructor for a camera on a board larger than the screen
-	limitWidth = limitX;
-	limitHeight = limitY;
+	if (Graphics::ScreenWidth >= BrdData::Columns * BrdData::Tile_Width)
+	{
+		limitWidth = BrdData::Cam_X_Size;
+	}
+	else
+	{
+		limitWidth = BrdData::Columns* BrdData::Tile_Width -1;
+	}
+	if (Graphics::ScreenHeight >= BrdData::Rows * BrdData::Tile_Height)
+	{
+		limitHeight = BrdData::Cam_Y_Size;
+	}
+	else
+	{
+		limitHeight = BrdData::Rows * BrdData::Tile_Height -1;
+	}
 	topLeft = Vec2(0, 0);
 	bottomRight = Vec2(BrdData::Cam_X_Size - 1.0f, BrdData::Cam_Y_Size - 1.0f);
 	scrollSpeed = float(BrdData::Cam_Speed);

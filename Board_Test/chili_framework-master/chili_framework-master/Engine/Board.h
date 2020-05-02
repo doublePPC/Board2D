@@ -16,7 +16,7 @@ public:
 	void update(float camXscroll, float camYscroll, float deltaTime);
 	void draw(Graphics& gfx);
 	void toggleGridView();
-	std::pair<int,int> rowColToDrawFromTopLeft();
+	std::pair<int,int> rowColToDraw();
 private:
 // ___________
 	// inner class

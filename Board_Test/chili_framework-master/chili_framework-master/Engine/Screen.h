@@ -5,7 +5,6 @@ class Screen
 {
 public:
 	Screen();
-	Screen(float limitX, float limitY);
 	~Screen();
 
 	void update(float xMov, float yMov, float deltaTime);

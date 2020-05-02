@@ -18,7 +18,7 @@ void Board::DrawMargin(const Vec2& topLeft, const Vec2& bottomRight, Graphics& g
 // Constructor and Destructor
 Board::Board()
 	:
-	camera(Screen(BrdData::Columns * BrdData::Tile_Width -1, BrdData::Rows * BrdData::Tile_Height -1))
+	camera(Screen())
 {
 	for (int i = 0; i < BrdData::Columns * BrdData::Rows; i++)
 	{
@@ -48,7 +48,7 @@ void Board::update(float camXscroll, float camYscroll, float deltaTime)
 
 void Board::draw(Graphics& gfx)
 {
-	std::pair<int, int> rowCol = rowColToDrawFromTopLeft();
+	std::pair<int, int> rowCol = rowColToDraw();
 	int startId = pos2Id(camera.topLeft);
 	for (int i = 0 ; i < rowCol.second ; i++)
 	{
@@ -65,7 +65,7 @@ void Board::toggleGridView()
 	gridViewable = !gridViewable;
 }
 
-std::pair<int,int> Board::rowColToDrawFromTopLeft()
+std::pair<int,int> Board::rowColToDraw()
 {
 	int amountOfCol = 0;
 	int amountOfRow = 0;
