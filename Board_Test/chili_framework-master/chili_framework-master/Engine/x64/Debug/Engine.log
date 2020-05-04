@@ -1,5 +1,5 @@
-﻿  Game.cpp
+﻿  Board.cpp
+  Game.cpp
   Main.cpp
   MainWindow.cpp
-  ObjectDrawer.cpp
   Engine.vcxproj -> C:\Users\Utilisateur\Source\Repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\x64\Debug\Engine.exe

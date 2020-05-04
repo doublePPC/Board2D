@@ -12,6 +12,8 @@ public:
 	Board();
 	~Board();
 
+	const Vec2& getCamTopLeft();
+	const TilePortion getVisibleArea(int index);
 	int pos2Id(const Vec2& point);
 	void update(float camXscroll, float camYscroll, float deltaTime);
 	void draw(Graphics& gfx);

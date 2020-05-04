@@ -117,7 +117,7 @@
     <ClInclude Include="BoardGenericData.h">
       <Filter>Header Files\Board</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectDrawer.h">
+    <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -169,9 +169,6 @@
     </ClCompile>
     <ClCompile Include="Screen.cpp">
       <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectDrawer.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

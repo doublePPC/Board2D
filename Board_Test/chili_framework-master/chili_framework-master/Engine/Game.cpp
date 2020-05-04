@@ -28,6 +28,7 @@ Game::Game( MainWindow& wnd )
     board(Board()),
     dude(EmoteHuman(Vec2(379.0f, 279.0f), Colors::Yellow))
 {
+    map = mapTest;
 }
 
 void Game::Go()
@@ -68,8 +69,24 @@ void Game::UpdateModel()
     }
 }
 
+void Game::drawBackground()
+{
+    std::pair<int, int> rowCol = board.rowColToDraw();
+    int startId = board.pos2Id(board.getCamTopLeft());
+    for (int i = 0; i < rowCol.second; i++)
+    {
+        for (int j = 0; j < rowCol.first; j++)
+        {
+            int tileId = i * BrdData::Columns + startId + j;
+            TilePortion visibleArea = board.getVisibleArea(tileId);
+            gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
+        }
+    }
+}
+
 void Game::ComposeFrame()
 {
+    drawBackground();
     board.draw(gfx);
     dude.drawObject(gfx);
 }

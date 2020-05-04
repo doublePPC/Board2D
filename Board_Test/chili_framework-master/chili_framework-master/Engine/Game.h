@@ -23,7 +23,9 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Time.h"
-#include "ObjectDrawer.h"
+#include "Board.h"
+#include "EmoteHuman.h"
+#include "Map.h"
 
 class Game
 {
@@ -37,6 +39,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+    void drawBackground();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -46,5 +49,7 @@ private:
     Board board;
     FrameTime ft;
     EmoteHuman dude;
+
+    const Color* map;
 	/********************************/
 };

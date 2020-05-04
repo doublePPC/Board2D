@@ -34,6 +34,16 @@ Board::~Board()
 	listTiles.clear();
 }
 
+const Vec2& Board::getCamTopLeft()
+{
+	return camera.topLeft;
+}
+
+const TilePortion Board::getVisibleArea(int index)
+{
+	return listTiles[index].getVisiblePart(camera.topLeft);
+}
+
 // Public Methods
 int Board::pos2Id(const Vec2& point)
 {
