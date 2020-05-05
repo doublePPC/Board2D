@@ -318,6 +318,20 @@ void Graphics::DrawRect(const Vec2& TopLeft, const Vec2& BottomRight, Color c)
 	}
 }
 
+void Graphics::DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR)
+{
+	const Vec2 start = Vec2(int(visibleTL.x - pos.x), int(visibleTL.y - pos.y));
+	const Vec2 end = Vec2(int(visibleBR.x - visibleTL.x), int(visibleBR.y - visibleTL.y));
+
+	for (int y = 0; y <= end.y; y++)
+	{
+		for (int x = 0; x <= end.x; x++)
+		{
+			PutPixel(visibleTL.x + x, visibleTL.y + y, surf.getPixel(x + start.x, y + start.y));
+		}
+	}
+}
+
 void Graphics::PutPixel( int x,int y,Color c )
 {
 	assert( x >= 0 );

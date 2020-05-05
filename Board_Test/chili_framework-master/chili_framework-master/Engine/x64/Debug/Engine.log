@@ -1,5 +1,10 @@
-﻿  Board.cpp
-  Game.cpp
-  Main.cpp
-  MainWindow.cpp
+﻿  Graphics.cpp
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(323,55): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(323,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(324,59): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(324,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,76): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,63): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,42): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,25): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
   Engine.vcxproj -> C:\Users\Utilisateur\Source\Repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\x64\Debug\Engine.exe

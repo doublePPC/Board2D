@@ -26,9 +26,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
     board(Board()),
-    dude(EmoteHuman(Vec2(379.0f, 279.0f), Colors::Yellow))
+    grass(Surface("Ressources\\Gazon.bmp")),
+    asphalt(Surface("Ressources\\Asphalte.bmp")),
+    sidewalk(Surface("Ressources\\Trottoir.bmp"))
 {
-    map = mapTest;
 }
 
 void Game::Go()
@@ -79,7 +80,20 @@ void Game::drawBackground()
         {
             int tileId = i * BrdData::Columns + startId + j;
             TilePortion visibleArea = board.getVisibleArea(tileId);
-            gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
+            Vec2 tileTopLeft = board.getTileConvTL(tileId);
+            //gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
+            if (mapTest[tileId] == 0)
+            {
+                gfx.DrawSprite(tileTopLeft, grass, visibleArea.topLeft, visibleArea.bottomRight);
+            }
+            else if (mapTest[tileId] == 1)
+            {
+                gfx.DrawSprite(tileTopLeft, asphalt, visibleArea.topLeft, visibleArea.bottomRight);
+            }
+            else if (mapTest[tileId] == 2)
+            {
+                gfx.DrawSprite(tileTopLeft, sidewalk, visibleArea.topLeft, visibleArea.bottomRight);
+            }
         }
     }
 }
@@ -88,5 +102,4 @@ void Game::ComposeFrame()
 {
     drawBackground();
     board.draw(gfx);
-    dude.drawObject(gfx);
 }

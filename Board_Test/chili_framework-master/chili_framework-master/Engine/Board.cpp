@@ -134,6 +134,13 @@ std::pair<int,int> Board::rowColToDraw()
 	return std::pair<int,int>(amountOfCol, amountOfRow);
 }
 
+Vec2 Board::getTileConvTL(int index)
+{
+	const float x = float((index % BrdData::Columns) * BrdData::Tile_Width);
+	const float y = float((index / BrdData::Columns) * BrdData::Tile_Height);
+	return camera.convertPos(Vec2(x, y));
+}
+
 /* ------------------------
       Tiles class section
    ------------------------ */

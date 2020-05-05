@@ -23,9 +23,8 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Time.h"
-#include "Board.h"
-#include "EmoteHuman.h"
-#include "Map.h"
+#include "EmoteGame.h"
+
 
 class Game
 {
@@ -48,8 +47,9 @@ private:
 	/*  User Variables              */
     Board board;
     FrameTime ft;
-    EmoteHuman dude;
-
-    const Color* map;
+    //EmoteHuman dude;
+    Surface grass;
+    Surface asphalt;
+    Surface sidewalk;
 	/********************************/
 };

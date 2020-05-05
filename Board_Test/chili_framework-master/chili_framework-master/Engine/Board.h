@@ -19,6 +19,7 @@ public:
 	void draw(Graphics& gfx);
 	void toggleGridView();
 	std::pair<int,int> rowColToDraw();
+	Vec2 getTileConvTL(int index);
 private:
 // ___________
 	// inner class
