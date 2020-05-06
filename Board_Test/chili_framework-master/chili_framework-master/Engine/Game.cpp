@@ -25,11 +25,17 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-    board(Board()),
     grass(Surface("Ressources\\Gazon.bmp")),
     asphalt(Surface("Ressources\\Asphalte.bmp")),
     sidewalk(Surface("Ressources\\Trottoir.bmp"))
 {
+    BrdData data;
+    data.Columns = 16;
+    data.Rows = 16;
+    data.Tile_Height = 100;
+    data.Tile_Width = 100;
+    data.Grid_DefaultColor = Colors::Gray;
+    board = Board(data);
 }
 
 void Game::Go()
@@ -78,8 +84,8 @@ void Game::drawBackground()
     {
         for (int j = 0; j < rowCol.first; j++)
         {
-            int tileId = i * BrdData::Columns + startId + j;
-            TilePortion visibleArea = board.getVisibleArea(tileId);
+            int tileId = i * 16 + startId + j;
+            TilePortion visibleArea = board.getVisiblePart(tileId);
             Vec2 tileTopLeft = board.getTileConvTL(tileId);
             //gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
             if (mapTest[tileId] == 0)

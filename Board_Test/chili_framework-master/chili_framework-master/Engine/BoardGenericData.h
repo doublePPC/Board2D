@@ -3,15 +3,17 @@
 #include <vector>
 #include <map>
 
-// this header file contains includes, constants and datastructs needed for the board algorithm
+// this header file contains structs for data transportation from class to class about board datas
 
 // constants
 struct BrdData
 {
-	static const int Columns = 16;
-	static const int Rows = 16;
-	static const int Tile_Width = 100;
-	static const int Tile_Height = 100;
+	int Columns;
+	int Rows;
+	int Tile_Width;
+	int Tile_Height;
+	Color Grid_DefaultColor;
+
 	static const int Cam_X_Size = Graphics::ScreenWidth;
 	static const int Cam_Y_Size = Graphics::ScreenHeight;
 	static const int Cam_Speed = 120;

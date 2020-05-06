@@ -177,7 +177,7 @@
       <Filter>Source Files\Sound&amp;Graphic</Filter>
     </ClCompile>
     <ClCompile Include="EmoteGame.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

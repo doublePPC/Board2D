@@ -1,27 +1,54 @@
 #include "Screen.h"
 
-Screen::Screen()
+Screen::Screen(const BrdData& brdData)
 {
-	if (Graphics::ScreenWidth >= BrdData::Columns * BrdData::Tile_Width)
+	brdPxWidth = brdData.Columns * brdData.Tile_Width;
+	brdPxHeight = brdData.Rows * brdData.Tile_Height;
+	if (Graphics::ScreenWidth >= brdPxWidth)
 	{
 		limitWidth = BrdData::Cam_X_Size;
 	}
 	else
 	{
-		limitWidth = BrdData::Columns* BrdData::Tile_Width -1;
+		limitWidth = brdPxWidth -1;
 	}
-	if (Graphics::ScreenHeight >= BrdData::Rows * BrdData::Tile_Height)
+	if (Graphics::ScreenHeight >= brdPxHeight)
 	{
 		limitHeight = BrdData::Cam_Y_Size;
 	}
 	else
 	{
-		limitHeight = BrdData::Rows * BrdData::Tile_Height -1;
+		limitHeight = brdPxHeight -1;
 	}
 	topLeft = Vec2(0.0f, 0.0f);
 	bottomRight = Vec2(BrdData::Cam_X_Size - 1.0f, BrdData::Cam_Y_Size - 1.0f);
 	offset = Vec2(0.0f, 0.0f);
 	scrollSpeed = float(BrdData::Cam_Speed);
+}
+
+Screen::Screen(const Screen& refScr)
+	: brdPxWidth(refScr.brdPxWidth),
+	  brdPxHeight(refScr.brdPxHeight),
+	  limitWidth(refScr.limitWidth),
+	  limitHeight(refScr.limitHeight),
+	  topLeft(refScr.topLeft),
+	  bottomRight(refScr.bottomRight),
+	  offset(refScr.offset),
+	  scrollSpeed(refScr.scrollSpeed)
+{
+}
+
+Screen& Screen::operator=(const Screen& refScr)
+{
+	brdPxWidth = refScr.brdPxWidth;
+	brdPxHeight = refScr.brdPxHeight;
+	limitWidth = refScr.limitWidth;
+	limitHeight = refScr.limitHeight;
+	topLeft = refScr.topLeft;
+	bottomRight = refScr.bottomRight;
+	offset = refScr.offset;
+	scrollSpeed = refScr.scrollSpeed;
+	return *this;
 }
 
 Screen::~Screen()
@@ -89,18 +116,18 @@ Vec2 Screen::convertPos(const Vec2& posToConvert)
 void Screen::alignCenter()
 {
 	int x = 0, y = 0;
-	if (BrdData::Columns * BrdData::Tile_Width < Graphics::ScreenWidth)
+	if (brdPxWidth < Graphics::ScreenWidth)
 	{
-		if ((Graphics::ScreenWidth - (BrdData::Columns * BrdData::Tile_Width)) / 2 >= 1)
+		if ((Graphics::ScreenWidth - brdPxWidth) / 2 >= 1)
 		{
-			x = (Graphics::ScreenWidth - (BrdData::Columns * BrdData::Tile_Width)) / 2;
+			x = (Graphics::ScreenWidth - brdPxWidth) / 2;
 		}
 	}
-	if (BrdData::Rows * BrdData::Tile_Height < Graphics::ScreenHeight)
+	if (brdPxHeight < Graphics::ScreenHeight)
 	{
-		if ((Graphics::ScreenHeight - (BrdData::Rows * BrdData::Tile_Height)) / 2 >= 1)
+		if ((Graphics::ScreenHeight - brdPxHeight) / 2 >= 1)
 		{
-			y = (Graphics::ScreenHeight - (BrdData::Rows * BrdData::Tile_Height)) / 2;
+			y = (Graphics::ScreenHeight - brdPxHeight) / 2;
 		}
 	}
 	offset = Vec2(float(x), float(y));

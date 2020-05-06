@@ -4,7 +4,10 @@
 class Screen
 {
 public:
-	Screen();
+	Screen() = default;
+	Screen(const BrdData& brdData);
+	Screen(const Screen& refScr);
+	Screen& operator= (const Screen& refScr);
 	~Screen();
 
 	void update(float xMov, float yMov, float deltaTime);
@@ -15,6 +18,8 @@ public:
 private:
 	int limitWidth;
 	int limitHeight;
+	int brdPxWidth;
+	int brdPxHeight;
 	float scrollSpeed;
 	Vec2 offset;
 public:
