@@ -17,6 +17,7 @@ public:
 
 	void putPixel(int x, int y, Color c);
 	Color getPixel(int x, int y) const;
+	std::pair<int, int> getDimension() const;
 
 	Surface& operator=(const Surface& surface);
 private:

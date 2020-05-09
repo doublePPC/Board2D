@@ -148,60 +148,17 @@ TilePortion Board::getVisiblePart(int index)
 {
 	Vec2 convertedTopLeft = getTopLeft(index) - camera.getOffsetTopLeft();
 	Vec2 convertedBottomRight = getBottomRight(index) - camera.getOffsetTopLeft();
-	Vec2 visibleTopLeft = Vec2(0.0f, 0.0f), visibleBottomRight = Vec2(0.0f, 0.0f);
-	// check for topLeft visibility
-	if (convertedTopLeft.x >= 0.0f && convertedTopLeft.x < float(Graphics::ScreenWidth))
+	visibilityStatus status = isRectVisible(convertedTopLeft, convertedBottomRight);
+	if (status != visibilityStatus::off)
 	{
-		// topLeft.x is visible
-		if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
-		{
-			// topLeft.y is also visible
-			visibleTopLeft = convertedTopLeft;
-		}
-		else if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
-		{
-			// visible topLeft.y must become top screen since its bottomRight.y is on screen
-			visibleTopLeft = Vec2(convertedTopLeft.x, 0.0f);
-		}
+		Vec2 visibleTL = visibleTopLeft(convertedTopLeft, status);
+		Vec2 visibleBR = visibleBottomRight(convertedBottomRight, status);
+		return TilePortion{ visibleTL, visibleBR };
 	}
-	else if (convertedBottomRight.x >= 0.0f && convertedBottomRight.x < float(Graphics::ScreenWidth))
+	else
 	{
-		// topLeft.x isn't on screen, but bottomRight.x is
-		if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
-		{
-			// topLeft.y is visible though
-			visibleTopLeft = Vec2(0.0f, convertedTopLeft.y);
-		}
+		return TilePortion{ Vec2(0.0f, 0.0f), Vec2(0.0f, 0.0f) };
 	}
-	// check for bottomRight visibility 
-	if (convertedBottomRight.x >= 0.0f && convertedBottomRight.x < float(Graphics::ScreenWidth))
-	{
-		// bottomRight.x is visible
-		if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
-		{
-			// bottomRight.y is also visible
-			visibleBottomRight = convertedBottomRight;
-		}
-		else if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
-		{
-			// visible bottomRight.y must become bottom screen since its topLeft.y is on the screen
-			visibleBottomRight = Vec2(convertedBottomRight.x, float(Graphics::ScreenHeight - 1));
-		}
-	}
-	else if (convertedTopLeft.x >= 0.0f && convertedTopLeft.x < float(Graphics::ScreenWidth))
-	{
-		// bottomRight.x isn't visible, but topLeft.x is
-		if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
-		{
-			// bottomRight.y is visible though
-			visibleBottomRight = Vec2(float(Graphics::ScreenWidth - 1), convertedBottomRight.y);
-		}
-		else
-		{
-			visibleBottomRight = Vec2(float(Graphics::ScreenWidth - 1), float(Graphics::ScreenHeight - 1));
-		}
-	}
-	return TilePortion{ visibleTopLeft, visibleBottomRight };
 }
 
 void Board::drawPerimeter(int index, Graphics& gfx)
@@ -213,8 +170,6 @@ void Board::drawPerimeter(int index, Graphics& gfx)
 		if (visibleArea.topLeft.x == getTopLeft(index).x - camera.getOffsetTopLeft().x)
 		{
 			// drawing Left side
-			assert(visibleArea.topLeft.y >= 0.0f);
-			assert(visibleArea.bottomRight.y < float(Graphics::ScreenHeight));
 			for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
 			{
 				gfx.PutPixel(int(visibleArea.topLeft.x), i, gridColor);
@@ -223,8 +178,6 @@ void Board::drawPerimeter(int index, Graphics& gfx)
 		if (visibleArea.topLeft.y == getTopLeft(index).y - camera.getOffsetTopLeft().y)
 		{
 			// drawing Top side
-			assert(visibleArea.topLeft.x >= 0.0f);
-			assert(visibleArea.bottomRight.x < float(Graphics::ScreenWidth));
 			for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
 			{
 				gfx.PutPixel(i, int(visibleArea.topLeft.y), gridColor);
@@ -233,8 +186,6 @@ void Board::drawPerimeter(int index, Graphics& gfx)
 		if (visibleArea.bottomRight.x == getBottomRight(index).x - camera.getOffsetTopLeft().x)
 		{
 			// drawing Right side
-			assert(visibleArea.topLeft.y >= 0.0f);
-			assert(visibleArea.bottomRight.y < float(Graphics::ScreenHeight));
 			for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
 			{
 				gfx.PutPixel(int(visibleArea.bottomRight.x), i, gridColor);
@@ -243,8 +194,6 @@ void Board::drawPerimeter(int index, Graphics& gfx)
 		if (visibleArea.bottomRight.y == getBottomRight(index).y - camera.getOffsetTopLeft().y)
 		{
 			// drawing Bottom side
-			assert(visibleArea.topLeft.x >= 0.0f);
-			assert(visibleArea.bottomRight.x < float(Graphics::ScreenWidth));
 			for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
 			{
 				gfx.PutPixel(i, int(visibleArea.bottomRight.y), gridColor);
@@ -380,3 +329,56 @@ void Board::BoardTile::drawPerimeter(const Vec2& cameraTopLeft, Graphics& gfx, C
 	}
 }
 */
+
+// check for topLeft visibility
+//if (convertedTopLeft.x >= 0.0f && convertedTopLeft.x < float(Graphics::ScreenWidth))
+//{
+//	// topLeft.x is visible
+//	if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
+//	{
+//		// topLeft.y is also visible
+//		visibleTopLeft = convertedTopLeft;
+//	}
+//	else if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
+//	{
+//		// visible topLeft.y must become top screen since its bottomRight.y is on screen
+//		visibleTopLeft = Vec2(convertedTopLeft.x, 0.0f);
+//	}
+//}
+//else if (convertedBottomRight.x >= 0.0f && convertedBottomRight.x < float(Graphics::ScreenWidth))
+//{
+//	// topLeft.x isn't on screen, but bottomRight.x is
+//	if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
+//	{
+//		// topLeft.y is visible though
+//		visibleTopLeft = Vec2(0.0f, convertedTopLeft.y);
+//	}
+//}
+//// check for bottomRight visibility 
+//if (convertedBottomRight.x >= 0.0f && convertedBottomRight.x < float(Graphics::ScreenWidth))
+//{
+//	// bottomRight.x is visible
+//	if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
+//	{
+//		// bottomRight.y is also visible
+//		visibleBottomRight = convertedBottomRight;
+//	}
+//	else if (convertedTopLeft.y >= 0.0f && convertedTopLeft.y < float(Graphics::ScreenHeight))
+//	{
+//		// visible bottomRight.y must become bottom screen since its topLeft.y is on the screen
+//		visibleBottomRight = Vec2(convertedBottomRight.x, float(Graphics::ScreenHeight - 1));
+//	}
+//}
+//else if (convertedTopLeft.x >= 0.0f && convertedTopLeft.x < float(Graphics::ScreenWidth))
+//{
+//	// bottomRight.x isn't visible, but topLeft.x is
+//	if (convertedBottomRight.y >= 0.0f && convertedBottomRight.y < float(Graphics::ScreenHeight))
+//	{
+//		// bottomRight.y is visible though
+//		visibleBottomRight = Vec2(float(Graphics::ScreenWidth - 1), convertedBottomRight.y);
+//	}
+//	else
+//	{
+//		visibleBottomRight = Vec2(float(Graphics::ScreenWidth - 1), float(Graphics::ScreenHeight - 1));
+//	}
+//}

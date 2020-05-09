@@ -5,12 +5,15 @@ class EmoteHuman : public MapObject
 {
 public:
 	EmoteHuman() = default;
-	EmoteHuman(Vec2 startPos, Color baseColor);
+	EmoteHuman(Vec2 startPos, const Surface& sprite);
+	EmoteHuman(const EmoteHuman& ref);
+	EmoteHuman& operator= (const EmoteHuman& ref);
 	~EmoteHuman();
 
 	void moveObject(Vec2 moveVect);
 	void drawObject(Graphics& gfx);
 	void update();
 private:
-	Color baseColor;
+	bool isSet = false;
+	Vec2 position; // center of sprite
 };

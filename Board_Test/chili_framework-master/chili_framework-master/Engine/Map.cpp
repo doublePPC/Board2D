@@ -71,6 +71,11 @@ Color Surface::getPixel(int x, int y) const
 	return pPixels[y * width + x];
 }
 
+std::pair<int, int> Surface::getDimension() const
+{
+	return std::pair<int, int>(width, height);
+}
+
 Surface& Surface::operator=(const Surface& surface)
 {
 	width = surface.width;

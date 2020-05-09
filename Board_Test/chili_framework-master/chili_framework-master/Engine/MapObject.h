@@ -1,10 +1,12 @@
 #pragma once
-#include "SpriteCodex.h"
+#include "BoardGenericData.h"
 
 class MapObject
 {
 public:
-	MapObject(Vec2 startPos, float _width, float _height);
+	MapObject(const Vec2& startPos, const Surface& image);
+	MapObject(const MapObject& refObj);
+	MapObject& operator= (const MapObject& refObj);
 	MapObject() = default;
 	~MapObject();
 
@@ -13,6 +15,7 @@ public:
 	virtual void update();
 
 	Vec2 topLeft;
-	float width;
-	float height;
+	Surface model;
+private:
+	bool isSet = false;
 };
