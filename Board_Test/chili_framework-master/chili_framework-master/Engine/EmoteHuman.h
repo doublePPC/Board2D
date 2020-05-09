@@ -1,5 +1,5 @@
 #pragma once
-#include "MapObject.h"
+#include "EmoteGenericData.h"
 
 class EmoteHuman : public MapObject
 {

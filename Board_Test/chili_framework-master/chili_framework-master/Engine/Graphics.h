@@ -25,7 +25,7 @@
 #include "ChiliException.h"
 #include "Colors.h"
 #include "Vec2.h"
-#include "Map.h"
+#include "Sprite.h"
 
 class Graphics
 {

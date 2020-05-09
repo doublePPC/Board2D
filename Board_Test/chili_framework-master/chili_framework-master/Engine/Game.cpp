@@ -25,17 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-    grass(Surface("Ressources\\Gazon.bmp")),
-    asphalt(Surface("Ressources\\Asphalte.bmp")),
-    sidewalk(Surface("Ressources\\Trottoir.bmp"))
+    eGame(EmoteGame())
 {
-    BrdData data;
-    data.Columns = 16;
-    data.Rows = 16;
-    data.Tile_Height = 100;
-    data.Tile_Width = 100;
-    data.Grid_DefaultColor = Colors::Gray;
-    board = Board(data);
 }
 
 void Game::Go()
@@ -69,43 +60,14 @@ void Game::UpdateModel()
     {
         xScroll = 1.0f;
     }
-    board.update(xScroll, yScroll, dt);
+    eGame.update(xScroll, yScroll, dt);
     if (wnd.kbd.KeyIsPressed('D'))
     {
         bool dude = true;
     }
 }
 
-void Game::drawBackground()
-{
-    std::pair<int, int> rowCol = board.rowColToDraw();
-    int startId = board.pos2Id(board.getCamTopLeft());
-    for (int i = 0; i < rowCol.second; i++)
-    {
-        for (int j = 0; j < rowCol.first; j++)
-        {
-            int tileId = i * 16 + startId + j;
-            TilePortion visibleArea = board.getVisiblePart(tileId);
-            Vec2 tileTopLeft = board.getTileConvTL(tileId);
-            //gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
-            if (mapTest[tileId] == 0)
-            {
-                gfx.DrawSprite(tileTopLeft, grass, visibleArea.topLeft, visibleArea.bottomRight);
-            }
-            else if (mapTest[tileId] == 1)
-            {
-                gfx.DrawSprite(tileTopLeft, asphalt, visibleArea.topLeft, visibleArea.bottomRight);
-            }
-            else if (mapTest[tileId] == 2)
-            {
-                gfx.DrawSprite(tileTopLeft, sidewalk, visibleArea.topLeft, visibleArea.bottomRight);
-            }
-        }
-    }
-}
-
 void Game::ComposeFrame()
 {
-    drawBackground();
-    board.draw(gfx);
+    eGame.draw(gfx);
 }

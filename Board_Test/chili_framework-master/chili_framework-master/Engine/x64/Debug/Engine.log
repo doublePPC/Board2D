@@ -1,30 +1,5 @@
-﻿  compilation header save succeeded; see C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\FramebufferPS.shh
-  compilation header save succeeded; see C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\FramebufferVS.shh
-  Board.cpp
-  BoardGenericData.cpp
-  COMInitializer.cpp
-  DXErr.cpp
-  EmoteGame.cpp
-  EmoteHuman.cpp
+﻿  EmoteGame.cpp
   Game.cpp
-  Graphics.cpp
-  Keyboard.cpp
   Main.cpp
   MainWindow.cpp
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(323,55): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(323,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(324,59): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(324,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,76): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,63): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,42): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Graphics.cpp(330,25): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-  Map.cpp
-  MapObject.cpp
-  Mouse.cpp
-  Screen.cpp
-  Sound.cpp
-  SpriteCodex.cpp
-  Time.cpp
-  Vec2.cpp
   Engine.vcxproj -> C:\Users\Utilisateur\Source\Repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\x64\Debug\Engine.exe

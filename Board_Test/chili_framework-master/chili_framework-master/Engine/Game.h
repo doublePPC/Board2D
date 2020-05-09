@@ -38,18 +38,13 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-    void drawBackground();
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-    Board board;
     FrameTime ft;
-    //EmoteHuman dude;
-    Surface grass;
-    Surface asphalt;
-    Surface sidewalk;
+    EmoteGame eGame;
 	/********************************/
 };

@@ -114,14 +114,17 @@
     <ClInclude Include="BoardGenericData.h">
       <Filter>Header Files\Board</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files\Sound&amp;Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="EmoteGame.h">
       <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
     <ClInclude Include="MapObject.h">
       <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="EmoteGenericData.h">
+      <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +173,6 @@
     <ClCompile Include="Screen.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\Sound&amp;Graphic</Filter>
-    </ClCompile>
     <ClCompile Include="EmoteGame.cpp">
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
@@ -181,6 +181,12 @@
     </ClCompile>
     <ClCompile Include="BoardGenericData.cpp">
       <Filter>Source Files\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Sound&amp;Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="EmoteGenericData.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
