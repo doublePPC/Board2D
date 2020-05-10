@@ -242,14 +242,14 @@ Graphics::Graphics( HWNDKey& key )
 
 Graphics::~Graphics()
 {
-	// free sysbuffer memory (aligned free)
-	if( pSysBuffer )
-	{
-		_aligned_free( pSysBuffer );
-		pSysBuffer = nullptr;
-	}
-	// clear the state of the device context before destruction
-	if( pImmediateContext ) pImmediateContext->ClearState();
+// free sysbuffer memory (aligned free)
+if (pSysBuffer)
+{
+	_aligned_free(pSysBuffer);
+	pSysBuffer = nullptr;
+}
+// clear the state of the device context before destruction
+if (pImmediateContext) pImmediateContext->ClearState();
 }
 
 void Graphics::EndFrame()
@@ -257,46 +257,46 @@ void Graphics::EndFrame()
 	HRESULT hr;
 
 	// lock and map the adapter memory for copying over the sysbuffer
-	if( FAILED( hr = pImmediateContext->Map( pSysBufferTexture.Get(),0u,
-		D3D11_MAP_WRITE_DISCARD,0u,&mappedSysBufferTexture ) ) )
+	if (FAILED(hr = pImmediateContext->Map(pSysBufferTexture.Get(), 0u,
+		D3D11_MAP_WRITE_DISCARD, 0u, &mappedSysBufferTexture)))
 	{
-		throw CHILI_GFX_EXCEPTION( hr,L"Mapping sysbuffer" );
+		throw CHILI_GFX_EXCEPTION(hr, L"Mapping sysbuffer");
 	}
 	// setup parameters for copy operation
-	Color* pDst = reinterpret_cast<Color*>(mappedSysBufferTexture.pData );
-	const size_t dstPitch = mappedSysBufferTexture.RowPitch / sizeof( Color );
+	Color* pDst = reinterpret_cast<Color*>(mappedSysBufferTexture.pData);
+	const size_t dstPitch = mappedSysBufferTexture.RowPitch / sizeof(Color);
 	const size_t srcPitch = Graphics::ScreenWidth;
-	const size_t rowBytes = srcPitch * sizeof( Color );
+	const size_t rowBytes = srcPitch * sizeof(Color);
 	// perform the copy line-by-line
-	for( size_t y = 0u; y < Graphics::ScreenHeight; y++ )
+	for (size_t y = 0u; y < Graphics::ScreenHeight; y++)
 	{
-		memcpy( &pDst[ y * dstPitch ],&pSysBuffer[y * srcPitch],rowBytes );
+		memcpy(&pDst[y * dstPitch], &pSysBuffer[y * srcPitch], rowBytes);
 	}
 	// release the adapter memory
-	pImmediateContext->Unmap( pSysBufferTexture.Get(),0u );
+	pImmediateContext->Unmap(pSysBufferTexture.Get(), 0u);
 
 	// render offscreen scene texture to back buffer
-	pImmediateContext->IASetInputLayout( pInputLayout.Get() );
-	pImmediateContext->VSSetShader( pVertexShader.Get(),nullptr,0u );
-	pImmediateContext->PSSetShader( pPixelShader.Get(),nullptr,0u );
-	pImmediateContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-	const UINT stride = sizeof( FSQVertex );
+	pImmediateContext->IASetInputLayout(pInputLayout.Get());
+	pImmediateContext->VSSetShader(pVertexShader.Get(), nullptr, 0u);
+	pImmediateContext->PSSetShader(pPixelShader.Get(), nullptr, 0u);
+	pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	const UINT stride = sizeof(FSQVertex);
 	const UINT offset = 0u;
-	pImmediateContext->IASetVertexBuffers( 0u,1u,pVertexBuffer.GetAddressOf(),&stride,&offset );
-	pImmediateContext->PSSetShaderResources( 0u,1u,pSysBufferTextureView.GetAddressOf() );
-	pImmediateContext->PSSetSamplers( 0u,1u,pSamplerState.GetAddressOf() );
-	pImmediateContext->Draw( 6u,0u );
+	pImmediateContext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
+	pImmediateContext->PSSetShaderResources(0u, 1u, pSysBufferTextureView.GetAddressOf());
+	pImmediateContext->PSSetSamplers(0u, 1u, pSamplerState.GetAddressOf());
+	pImmediateContext->Draw(6u, 0u);
 
 	// flip back/front buffers
-	if( FAILED( hr = pSwapChain->Present( 1u,0u ) ) )
+	if (FAILED(hr = pSwapChain->Present(1u, 0u)))
 	{
-		if( hr == DXGI_ERROR_DEVICE_REMOVED )
+		if (hr == DXGI_ERROR_DEVICE_REMOVED)
 		{
-			throw CHILI_GFX_EXCEPTION( pDevice->GetDeviceRemovedReason(),L"Presenting back buffer [device removed]" );
+			throw CHILI_GFX_EXCEPTION(pDevice->GetDeviceRemovedReason(), L"Presenting back buffer [device removed]");
 		}
 		else
 		{
-			throw CHILI_GFX_EXCEPTION( hr,L"Presenting back buffer" );
+			throw CHILI_GFX_EXCEPTION(hr, L"Presenting back buffer");
 		}
 	}
 }
@@ -304,21 +304,21 @@ void Graphics::EndFrame()
 void Graphics::BeginFrame()
 {
 	// clear the sysbuffer
-	memset( pSysBuffer,0u,sizeof( Color ) * Graphics::ScreenHeight * Graphics::ScreenWidth );
+	memset(pSysBuffer, 0u, sizeof(Color) * Graphics::ScreenHeight * Graphics::ScreenWidth);
 }
 
 void Graphics::DrawRect(const Vec2& TopLeft, const Vec2& BottomRight, Color c)
 {
-	for(int x = int(TopLeft.x) ; x <= int(BottomRight.x) ; x++)
+	for (int x = int(TopLeft.x); x <= int(BottomRight.x); x++)
 	{
-		for(int y = int(TopLeft.y) ; y <= int(BottomRight.y) ; y++)
+		for (int y = int(TopLeft.y); y <= int(BottomRight.y); y++)
 		{
 			PutPixel(x, y, c);
 		}
 	}
 }
 
-void Graphics::DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR)
+void Graphics::DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR, Color transp, bool withTransp)
 {
 	const Vec2 start = Vec2(visibleTL.x - pos.x, visibleTL.y - pos.y);
 	const Vec2 end = Vec2(visibleBR.x - visibleTL.x, visibleBR.y - visibleTL.y);
@@ -327,7 +327,11 @@ void Graphics::DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visi
 	{
 		for (int x = 0; x <= int(end.x); x++)
 		{
-			PutPixel(int(visibleTL.x) + x, int(visibleTL.y) + y, surf.getPixel(x + int(start.x), y + int(start.y)));
+			Color srcColor = surf.getPixel(x + int(start.x), y + int(start.y));
+			if (!withTransp || transp != srcColor)
+			{
+				PutPixel(int(visibleTL.x) + x, int(visibleTL.y) + y, surf.getPixel(x + int(start.x), y + int(start.y)));
+			}	
 		}
 	}
 }

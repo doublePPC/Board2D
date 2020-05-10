@@ -12,6 +12,7 @@ public:
 
 	virtual void moveObject(Vec2 moveVect);
 	virtual void drawObject(Graphics& gfx);
+	virtual void drawRevertSprite(Graphics& gfx);
 	virtual void update();
 
 	Vec2 getCenter();
@@ -20,4 +21,5 @@ public:
 	Surface model;
 private:
 	bool isSet = false;
+	std::vector<unsigned int> dwordList;
 };

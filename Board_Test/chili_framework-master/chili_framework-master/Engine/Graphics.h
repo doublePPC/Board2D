@@ -55,7 +55,7 @@ public:
 	void EndFrame();
 	void BeginFrame();
 	void DrawRect(const Vec2& TopLeft, const Vec2& BottomRight, Color c);
-	void DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR);
+	void DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR, Color transp, bool withTransp);
 	void PutPixel( int x,int y,int r,int g,int b )
 	{
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );

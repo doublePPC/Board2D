@@ -5,6 +5,7 @@ MapObject::MapObject(const Vec2& startPos, const Surface& image)
 	model(image)
 {
 	isSet = true;
+	std::pair<int, int> dimension = image.getDimension();
 }
 
 MapObject::MapObject(const MapObject& refObj)
@@ -42,8 +43,12 @@ void MapObject::drawObject(Graphics& gfx)
 	{
 		Vec2 visibleTL = visibleTopLeft(topLeft, status);
 		Vec2 visibleBR = visibleBottomRight(bottomRight, status);	
-		gfx.DrawSprite(topLeft, model, visibleTL, visibleBR);
+		gfx.DrawSprite(topLeft, model, visibleTL, visibleBR, RGB(128, 0, 255), true);
 	}
+}
+
+void MapObject::drawRevertSprite(Graphics& gfx)
+{
 }
 
 void MapObject::update()

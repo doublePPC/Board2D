@@ -61,15 +61,15 @@ void EmoteGame::drawBackground(Graphics& gfx)
             //gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
             if (currentMap[tileId] == 0)
             {
-                gfx.DrawSprite(tileTopLeft, backgroundAssets.getGrass(), visibleArea.topLeft, visibleArea.bottomRight);
+                gfx.DrawSprite(tileTopLeft, backgroundAssets.getGrass(), visibleArea.topLeft, visibleArea.bottomRight, RGB(255, 0, 128), false);
             }
             else if (currentMap[tileId] == 1)
             {
-                gfx.DrawSprite(tileTopLeft, backgroundAssets.getAsphalt(), visibleArea.topLeft, visibleArea.bottomRight);
+                gfx.DrawSprite(tileTopLeft, backgroundAssets.getAsphalt(), visibleArea.topLeft, visibleArea.bottomRight, RGB(255, 0, 128), false);
             }
             else if (currentMap[tileId] == 2)
             {
-                gfx.DrawSprite(tileTopLeft, backgroundAssets.getSidewalk(), visibleArea.topLeft, visibleArea.bottomRight);
+                gfx.DrawSprite(tileTopLeft, backgroundAssets.getSidewalk(), visibleArea.topLeft, visibleArea.bottomRight, RGB(255, 0, 128), false);
             }
         }
     }
