@@ -320,14 +320,14 @@ void Graphics::DrawRect(const Vec2& TopLeft, const Vec2& BottomRight, Color c)
 
 void Graphics::DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR)
 {
-	const Vec2 start = Vec2(int(visibleTL.x - pos.x), int(visibleTL.y - pos.y));
-	const Vec2 end = Vec2(int(visibleBR.x - visibleTL.x), int(visibleBR.y - visibleTL.y));
+	const Vec2 start = Vec2(visibleTL.x - pos.x, visibleTL.y - pos.y);
+	const Vec2 end = Vec2(visibleBR.x - visibleTL.x, visibleBR.y - visibleTL.y);
 
-	for (int y = 0; y <= end.y; y++)
+	for (int y = 0; y <= int(end.y); y++)
 	{
-		for (int x = 0; x <= end.x; x++)
+		for (int x = 0; x <= int(end.x); x++)
 		{
-			PutPixel(visibleTL.x + x, visibleTL.y + y, surf.getPixel(x + start.x, y + start.y));
+			PutPixel(int(visibleTL.x) + x, int(visibleTL.y) + y, surf.getPixel(x + int(start.x), y + int(start.y)));
 		}
 	}
 }

@@ -22,3 +22,12 @@ Surface& BackgroundContainer::getSidewalk()
 	return sidewalk;
 }
 
+DecorObjectContainer::DecorObjectContainer()
+	: walkSign(Surface("Ressources\\TraversePieton.bmp"))
+{
+}
+
+Surface& DecorObjectContainer::getWalkSign()
+{
+	return walkSign;
+}

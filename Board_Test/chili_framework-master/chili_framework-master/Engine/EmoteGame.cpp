@@ -1,7 +1,8 @@
 #include "EmoteGame.h"
 
 EmoteGame::EmoteGame()
-	: backgroundAssets(BackgroundContainer())
+	: backgroundAssets(BackgroundContainer()),
+    decorAssets(DecorObjectContainer())
 {
 	BrdData data;
 	data.Columns = 16;
@@ -14,10 +15,18 @@ EmoteGame::EmoteGame()
 	data.Tile_Width = 100;
 	data.Grid_DefaultColor = Colors::Gray;
 	board = Board(data);
+    listStaticObjects.push_back(new EmoteDecor(Vec2(700.0f, 20.0f), decorAssets.getWalkSign(), Pathing::block));
 }
 
 EmoteGame::~EmoteGame()
 {
+    if (!listStaticObjects.empty())
+    {
+        for (int i = 0; i < listStaticObjects.size(); i++)
+        {
+            delete listStaticObjects[i];
+        }
+    }
 }
 
 void EmoteGame::update(float xScroll, float yScroll, float dt)
@@ -29,6 +38,13 @@ void EmoteGame::draw(Graphics& gfx)
 {
 	drawBackground(gfx);
 	board.draw(gfx);
+    if (listStaticObjects.size() > 0)
+    {
+        for (int i = 0; i < listStaticObjects.size(); i++)
+        {
+            listStaticObjects[i]->drawObject(gfx);
+        }
+    }
 }
 
 void EmoteGame::drawBackground(Graphics& gfx)

@@ -126,6 +126,9 @@
     <ClInclude Include="EmoteGenericData.h">
       <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
+    <ClInclude Include="EmoteDecor.h">
+      <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -186,6 +189,9 @@
       <Filter>Source Files\Sound&amp;Graphic</Filter>
     </ClCompile>
     <ClCompile Include="EmoteGenericData.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EmoteDecor.cpp">
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
   </ItemGroup>

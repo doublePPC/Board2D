@@ -14,6 +14,8 @@ public:
 	virtual void drawObject(Graphics& gfx);
 	virtual void update();
 
+	Vec2 getCenter();
+
 	Vec2 topLeft;
 	Surface model;
 private:

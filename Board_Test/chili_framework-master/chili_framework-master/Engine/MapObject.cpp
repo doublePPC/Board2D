@@ -49,3 +49,11 @@ void MapObject::drawObject(Graphics& gfx)
 void MapObject::update()
 {
 }
+
+Vec2 MapObject::getCenter()
+{
+	std::pair<int, int> dimension = model.getDimension();
+	float x = topLeft.x + float(dimension.first) / 2.0f;
+	float y = topLeft.y + float(dimension.second) / 2.0f;
+	return Vec2(x, y);
+}

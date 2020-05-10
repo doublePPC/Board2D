@@ -15,5 +15,4 @@ public:
 	void update();
 private:
 	bool isSet = false;
-	Vec2 position; // center of sprite
 };

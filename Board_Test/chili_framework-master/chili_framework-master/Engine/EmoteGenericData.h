@@ -2,6 +2,12 @@
 #include "Board.h"
 #include "MapObject.h"
 
+enum class Pathing
+{
+	walkable = 0,
+	block
+};
+
 class BackgroundContainer
 {
 public:
@@ -36,4 +42,16 @@ static const int map1[256] =
 	0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+
+class DecorObjectContainer
+{
+public:
+	DecorObjectContainer();
+	~DecorObjectContainer() = default;
+
+	Surface& getWalkSign();
+private:
+	Surface walkSign;
 };

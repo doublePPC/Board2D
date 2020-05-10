@@ -1,15 +1,13 @@
 #include "EmoteHuman.h"
 
 EmoteHuman::EmoteHuman(Vec2 startPos, const Surface& sprite)
-	: MapObject(startPos, sprite),
-	position(startPos)
+	: MapObject(startPos, sprite)
 {
 	isSet = true;
 }
 
 EmoteHuman::EmoteHuman(const EmoteHuman& ref)
-	: MapObject(ref),
-	position(ref.position)
+	: MapObject(ref)
 {
 	isSet = true;
 }
@@ -18,14 +16,12 @@ EmoteHuman& EmoteHuman::operator=(const EmoteHuman& ref)
 {
 	model = ref.model;
 	topLeft = ref.topLeft;
-	position = ref.position;
 	isSet = true;
 	return *this;
 }
 
 EmoteHuman::~EmoteHuman()
 {
-	model.~Surface();
 }
 
 void EmoteHuman::moveObject(Vec2 moveVect)

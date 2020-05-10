@@ -1,5 +1,6 @@
 #pragma once
 #include "EmoteHuman.h"
+#include "EmoteDecor.h"
 
 class EmoteGame
 {
@@ -12,6 +13,8 @@ public:
 	void drawBackground(Graphics& gfx);
 private:
 	BackgroundContainer backgroundAssets;
+	DecorObjectContainer decorAssets;
 	std::vector<int> currentMap;
+	std::vector<MapObject*> listStaticObjects;
 	Board board;
 };
