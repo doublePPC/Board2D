@@ -23,7 +23,7 @@ Surface& BackgroundContainer::getSidewalk()
 }
 
 DecorObjectContainer::DecorObjectContainer()
-	: walkSign(Surface("Ressources\\TraversePieton.bmp"))
+	: walkSign(Surface("Ressources\\TraversePiéton62x133.bmp"))
 {
 }
 

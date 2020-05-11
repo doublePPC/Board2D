@@ -7,6 +7,7 @@ EmoteGame::EmoteGame()
 	BrdData data;
 	data.Columns = 16;
 	data.Rows = 16;
+    currentMap.reserve(data.Columns * data.Rows);
 	for (int i = 0; i < data.Rows * data.Columns; i++)
 	{
         currentMap.push_back(map1[i]);

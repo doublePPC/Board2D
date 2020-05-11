@@ -163,43 +163,47 @@ TilePortion Board::getVisiblePart(int index)
 
 void Board::drawPerimeter(int index, Graphics& gfx)
 {
-	TilePortion visibleArea = getVisiblePart(index);
-	if (visibleArea.bottomRight.x - visibleArea.topLeft.x > 0.0f)
+	if (gridViewable)
 	{
-		// tile is visible
-		if (visibleArea.topLeft.x == getTopLeft(index).x - camera.getOffsetTopLeft().x)
+		TilePortion visibleArea = getVisiblePart(index);
+		if (visibleArea.bottomRight.x - visibleArea.topLeft.x > 0.0f)
 		{
-			// drawing Left side
-			for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
+			// tile is visible
+			if (visibleArea.topLeft.x == getTopLeft(index).x - camera.getOffsetTopLeft().x)
 			{
-				gfx.PutPixel(int(visibleArea.topLeft.x), i, gridColor);
+				// drawing Left side
+				for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
+				{
+					gfx.PutPixel(int(visibleArea.topLeft.x), i, gridColor);
+				}
 			}
-		}
-		if (visibleArea.topLeft.y == getTopLeft(index).y - camera.getOffsetTopLeft().y)
-		{
-			// drawing Top side
-			for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
+			if (visibleArea.topLeft.y == getTopLeft(index).y - camera.getOffsetTopLeft().y)
 			{
-				gfx.PutPixel(i, int(visibleArea.topLeft.y), gridColor);
+				// drawing Top side
+				for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
+				{
+					gfx.PutPixel(i, int(visibleArea.topLeft.y), gridColor);
+				}
 			}
-		}
-		if (visibleArea.bottomRight.x == getBottomRight(index).x - camera.getOffsetTopLeft().x)
-		{
-			// drawing Right side
-			for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
+			if (visibleArea.bottomRight.x == getBottomRight(index).x - camera.getOffsetTopLeft().x)
 			{
-				gfx.PutPixel(int(visibleArea.bottomRight.x), i, gridColor);
+				// drawing Right side
+				for (int i = int(visibleArea.topLeft.y); i <= int(visibleArea.bottomRight.y); i++)
+				{
+					gfx.PutPixel(int(visibleArea.bottomRight.x), i, gridColor);
+				}
 			}
-		}
-		if (visibleArea.bottomRight.y == getBottomRight(index).y - camera.getOffsetTopLeft().y)
-		{
-			// drawing Bottom side
-			for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
+			if (visibleArea.bottomRight.y == getBottomRight(index).y - camera.getOffsetTopLeft().y)
 			{
-				gfx.PutPixel(i, int(visibleArea.bottomRight.y), gridColor);
+				// drawing Bottom side
+				for (int i = int(visibleArea.topLeft.x); i <= int(visibleArea.bottomRight.x); i++)
+				{
+					gfx.PutPixel(i, int(visibleArea.bottomRight.y), gridColor);
+				}
 			}
 		}
 	}
+	
 }
 
 Vec2 Board::getTopLeft(int index)
