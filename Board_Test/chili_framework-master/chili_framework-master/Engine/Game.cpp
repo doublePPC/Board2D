@@ -69,5 +69,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-    eGame.draw(gfx);
+    eGame.drawMap(gfx);
 }

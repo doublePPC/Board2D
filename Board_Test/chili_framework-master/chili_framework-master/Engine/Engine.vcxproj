@@ -147,6 +147,7 @@
     <ClInclude Include="EmoteGame.h" />
     <ClInclude Include="EmoteGenericData.h" />
     <ClInclude Include="EmoteHuman.h" />
+    <ClInclude Include="EmoteMap.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="EmoteGame.cpp" />
     <ClCompile Include="EmoteGenericData.cpp" />
     <ClCompile Include="EmoteHuman.cpp" />
+    <ClCompile Include="EmoteMap.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
