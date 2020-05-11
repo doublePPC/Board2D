@@ -14,7 +14,7 @@ EmoteMap::EmoteMap(BackgroundContainer& backgrounds, DecorObjectContainer& decor
 	data.Tile_Width = 100;
 	data.Grid_DefaultColor = Colors::Gray;
 	board = Board(data);
-	listDecors.emplace_back(EmoteDecor(Vec2(700.0f, 20.0f), decors.getWalkSign(), Pathing::block));
+	listDecors.emplace_back(EmoteDecor(Vec2(1100.0f, 20.0f), decors.getWalkSign(), Pathing::block));
 }
 
 EmoteMap::~EmoteMap()
@@ -30,7 +30,7 @@ void EmoteMap::draw(Graphics& gfx, BackgroundContainer& backgrounds, DecorObject
 	{
 		for (int i = 0; i < listDecors.size(); i++)
 		{
-			listDecors[i].drawObject(gfx);
+			listDecors[i].drawObject(gfx, board.getCamTopLeft());
 		}
 	}
 }

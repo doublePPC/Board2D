@@ -11,7 +11,7 @@ public:
 	~MapObject();
 
 	virtual void moveObject(Vec2 moveVect);
-	virtual void drawObject(Graphics& gfx);
+	virtual void drawObject(Graphics& gfx, const Vec2& conversionVector);
 	virtual void drawRevertSprite(Graphics& gfx);
 	virtual void update();
 

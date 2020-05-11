@@ -2,6 +2,7 @@
 
 visibilityStatus isRectVisible(const Vec2& topLeftPos, const Vec2& botRightPos)
 {
+	// works with converted coordinates
 	if (int(botRightPos.x) >= 0 &&
 		int(topLeftPos.x) < Graphics::ScreenWidth &&
 		int(botRightPos.y) >= 0 &&

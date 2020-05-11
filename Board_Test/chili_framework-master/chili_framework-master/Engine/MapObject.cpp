@@ -33,17 +33,18 @@ void MapObject::moveObject(Vec2 moveVect)
 	topLeft += moveVect;
 }
 
-void MapObject::drawObject(Graphics& gfx)
+void MapObject::drawObject(Graphics& gfx, const Vec2& conversionVector)
 {
 	assert(isSet);
 	std::pair<int, int> dimension = model.getDimension();
-	Vec2 bottomRight = Vec2(topLeft.x + float(dimension.first), topLeft.y + float(dimension.second));
-	visibilityStatus status = isRectVisible(topLeft, bottomRight);
+	Vec2 convertedBottomRight = Vec2(topLeft.x + float(dimension.first), topLeft.y + float(dimension.second)) - conversionVector;
+	Vec2 convertedTopLeft = topLeft - conversionVector;
+	visibilityStatus status = isRectVisible(convertedTopLeft, convertedBottomRight);
 	if (status != visibilityStatus::off)
 	{
-		Vec2 visibleTL = visibleTopLeft(topLeft, status);
-		Vec2 visibleBR = visibleBottomRight(bottomRight, status);	
-		gfx.DrawSprite(topLeft, model, visibleTL, visibleBR, RGB(128, 0, 255), true);
+		Vec2 visibleTL = visibleTopLeft(convertedTopLeft, status);
+		Vec2 visibleBR = visibleBottomRight(convertedBottomRight, status);	
+		gfx.DrawSprite(convertedTopLeft, model, visibleTL, visibleBR, RGB(128, 0, 255), true);
 	}
 }
 
