@@ -5,7 +5,7 @@ EmoteMap::EmoteMap(BackgroundContainer& backgrounds, DecorObjectContainer& decor
 	BrdData data;
 	data.Columns = 16;
 	data.Rows = 16;
-	backgroundTilesType.reserve(data.Columns * data.Rows);
+	backgroundTilesType.reserve(256);
 	for (int i = 0; i < data.Rows * data.Columns; i++)
 	{
 		backgroundTilesType.push_back(map1[i]);

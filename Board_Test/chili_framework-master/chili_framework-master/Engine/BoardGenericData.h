@@ -33,7 +33,7 @@ struct BrdData
 
 	static const int Cam_X_Size = Graphics::ScreenWidth;
 	static const int Cam_Y_Size = Graphics::ScreenHeight;
-	static const int Cam_Speed = 120;
+	static const int Cam_Speed = 600;
 	static const bool Grid_DefaultViewable = false;
 };
 

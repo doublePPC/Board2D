@@ -31,16 +31,20 @@ Game::Game( MainWindow& wnd )
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
-	UpdateModel();
+	gfx.BeginFrame();
+    float dt = ft.getFrameDeltaTime();
+    while (dt > 0.0f)
+    {
+        const float framePart = std::min(0.0025f, dt);
+        UpdateModel(framePart);
+        dt -= framePart;
+    }
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel(float frameTimeFragment)
 {
-    // acquire delta time between this frame and last frame
-    float dt = ft.getFrameDeltaTime();
     // screen movement input reading
     float xScroll = 0.0f;
     float yScroll = 0.0f;
@@ -60,7 +64,7 @@ void Game::UpdateModel()
     {
         xScroll = 1.0f;
     }
-    eGame.update(xScroll, yScroll, dt);
+    eGame.update(xScroll, yScroll, frameTimeFragment);
     if (wnd.kbd.KeyIsPressed('D'))
     {
         bool dude = true;
