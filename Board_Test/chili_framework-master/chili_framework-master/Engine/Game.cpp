@@ -45,27 +45,8 @@ void Game::Go()
 
 void Game::UpdateModel(float frameTimeFragment)
 {
-    // screen movement input reading
-    float xScroll = 0.0f;
-    float yScroll = 0.0f;
-    if (wnd.kbd.KeyIsPressed(VK_DOWN))
-    {
-        yScroll = 1.0f;
-    }
-    if (wnd.kbd.KeyIsPressed(VK_UP))
-    {
-        yScroll = -1.0f;
-    }
-    if (wnd.kbd.KeyIsPressed(VK_LEFT))
-    {
-        xScroll = -1.0f;
-    }
-    if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-    {
-        xScroll = 1.0f;
-    }
-    eGame.update(xScroll, yScroll, frameTimeFragment);
-    if (wnd.kbd.KeyIsPressed('D'))
+    eGame.update(wnd.kbd, wnd.mouse, frameTimeFragment);
+    if (wnd.kbd.KeyIsPressed('K'))
     {
         bool dude = true;
     }

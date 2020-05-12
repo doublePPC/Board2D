@@ -8,6 +8,14 @@ enum class Pathing
 	block
 };
 
+enum class Facing
+{
+	down = 0,
+	right,
+	left,
+	up
+};
+
 class BackgroundContainer
 {
 public:

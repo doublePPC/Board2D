@@ -1,5 +1,7 @@
 #pragma once
 #include "EmoteMap.h"
+#include "Keyboard.h"
+#include "Mouse.h"
 
 class EmoteGame
 {
@@ -7,7 +9,7 @@ public:
 	EmoteGame();
 	~EmoteGame();
 
-	void update(float xScroll, float yScroll, float dt);
+	void update(const Keyboard& kbd, const Mouse& mouse, float dt);
 	void drawMap(Graphics& gfx);
 private:
 	BackgroundContainer backgroundAssets;

@@ -13,8 +13,26 @@ EmoteGame::~EmoteGame()
 {
 }
 
-void EmoteGame::update(float xScroll, float yScroll, float dt)
+void EmoteGame::update(const Keyboard& kbd, const Mouse& mouse, float dt)
 {
+    float xScroll = 0.0f;
+    float yScroll = 0.0f;
+    if (kbd.KeyIsPressed(VK_DOWN))
+    {
+        yScroll = 1.0f;
+    }
+    if (kbd.KeyIsPressed(VK_UP))
+    {
+        yScroll = -1.0f;
+    }
+    if (kbd.KeyIsPressed(VK_LEFT))
+    {
+        xScroll = -1.0f;
+    }
+    if (kbd.KeyIsPressed(VK_RIGHT))
+    {
+        xScroll = 1.0f;
+    }
     currentMap->update(xScroll, yScroll, dt);
 }
 
