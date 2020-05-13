@@ -336,6 +336,24 @@ void Graphics::DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visi
 	}
 }
 
+void Graphics::DrawSheetFragment(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR, Color transp, int startShX, int startShY)
+{
+	const Vec2 start = Vec2(visibleTL.x - pos.x, visibleTL.y - pos.y);
+	const Vec2 end = Vec2(visibleBR.x - visibleTL.x, visibleBR.y - visibleTL.y);
+
+	for (int y = 0; y <= int(end.y); y++)
+	{
+		for (int x = 0; x <= int(end.x); x++)
+		{
+			Color srcColor = surf.getPixel(x + int(start.x) + startShX, y + int(start.y) + startShY);
+			if (transp != srcColor)
+			{
+				PutPixel(int(visibleTL.x) + x, int(visibleTL.y) + y, surf.getPixel(x + int(start.x) + startShX, y + int(start.y) + startShY));
+			}
+		}
+	}
+}
+
 void Graphics::PutPixel( int x,int y,Color c )
 {
 	assert( x >= 0 );

@@ -67,3 +67,8 @@ void EmoteMap::drawBackground(Graphics& gfx, BackgroundContainer& backgrounds)
 		}
 	}
 }
+
+Vec2 EmoteMap::getCameraTopLeft()
+{
+	return board.getCamTopLeft();
+}

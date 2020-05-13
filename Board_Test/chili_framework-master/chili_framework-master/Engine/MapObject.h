@@ -16,6 +16,7 @@ public:
 	virtual void update();
 
 	Vec2 getCenter();
+	TilePortion getVisiblePart(const Vec2& convertionVector, int width, int height);
 
 	Vec2 topLeft;
 	Surface model;

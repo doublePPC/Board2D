@@ -15,6 +15,9 @@ public:
 	float GetLengthSq() const;
 	Vec2& Normalize();
 	Vec2 GetNormalized() const;
+
+	bool operator !=(const Vec2& rhs);
+	bool operator ==(const Vec2& rhs);
 public:
 	float x;
 	float y;

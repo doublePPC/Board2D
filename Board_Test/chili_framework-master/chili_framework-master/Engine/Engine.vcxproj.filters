@@ -132,6 +132,9 @@
     <ClInclude Include="EmoteMap.h">
       <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
+    <ClInclude Include="EmoteAnimations.h">
+      <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -198,6 +201,9 @@
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
     <ClCompile Include="EmoteMap.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="EmoteAnimations.cpp">
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
   </ItemGroup>

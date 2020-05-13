@@ -16,4 +16,6 @@ private:
 	DecorObjectContainer decorAssets;
 	std::vector<EmoteMap> listMaps;
 	EmoteMap* currentMap;
+	Surface reiscant1;
+	std::vector<EmoteHuman> listCharacters;
 };

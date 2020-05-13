@@ -62,3 +62,13 @@ Vec2 Vec2::GetNormalized() const
 	}
 	return *this;
 }
+
+bool Vec2::operator!=(const Vec2& rhs)
+{
+	return this->x != rhs.x && this->y != rhs.y;
+}
+
+bool Vec2::operator==(const Vec2& rhs)
+{
+	return this->x == rhs.x && this->y == rhs.y;
+}

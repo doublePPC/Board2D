@@ -34,6 +34,7 @@ public:
 	void draw(Graphics& gfx, BackgroundContainer& backgrounds, DecorObjectContainer decors);
 	void update(float xScroll, float yScroll, float dt);
 	void drawBackground(Graphics& gfx, BackgroundContainer& backgrounds);
+	Vec2 getCameraTopLeft();
 private:
 	Board board;
 	std::vector<EmoteDecor> listDecors;

@@ -3,10 +3,12 @@
 EmoteGame::EmoteGame()
 	: backgroundAssets(BackgroundContainer()),
     decorAssets(DecorObjectContainer()),
-    currentMap(nullptr)
+    currentMap(nullptr),
+    reiscant1(Surface("Ressources\\ReiscantChar1.bmp"))
 {
     listMaps.emplace_back(EmoteMap(backgroundAssets, decorAssets));
     currentMap = &listMaps[0];
+    listCharacters.emplace_back(EmoteHuman(Vec2(500.0f, 800.0f), reiscant1, 48, 80));
 }
 
 EmoteGame::~EmoteGame()
@@ -34,9 +36,17 @@ void EmoteGame::update(const Keyboard& kbd, const Mouse& mouse, float dt)
         xScroll = 1.0f;
     }
     currentMap->update(xScroll, yScroll, dt);
+    for (int i = 0; i < listCharacters.size(); i++)
+    {
+        listCharacters[i].update(dt);
+    }
 }
 
 void EmoteGame::drawMap(Graphics& gfx)
 {
     currentMap->draw(gfx, backgroundAssets, decorAssets);
+    for (int i = 0; i < listCharacters.size(); i++)
+    {
+        listCharacters[i].drawObject(gfx, currentMap->getCameraTopLeft());
+    }
 }

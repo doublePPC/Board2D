@@ -33,18 +33,14 @@ void MapObject::moveObject(Vec2 moveVect)
 	topLeft += moveVect;
 }
 
-void MapObject::drawObject(Graphics& gfx, const Vec2& conversionVector)
+void MapObject::drawObject(Graphics& gfx, const Vec2& convertionVector)
 {
 	assert(isSet);
 	std::pair<int, int> dimension = model.getDimension();
-	Vec2 convertedBottomRight = Vec2(topLeft.x + float(dimension.first), topLeft.y + float(dimension.second)) - conversionVector;
-	Vec2 convertedTopLeft = topLeft - conversionVector;
-	visibilityStatus status = isRectVisible(convertedTopLeft, convertedBottomRight);
-	if (status != visibilityStatus::off)
-	{
-		Vec2 visibleTL = visibleTopLeft(convertedTopLeft, status);
-		Vec2 visibleBR = visibleBottomRight(convertedBottomRight, status);	
-		gfx.DrawSprite(convertedTopLeft, model, visibleTL, visibleBR, RGB(128, 0, 255), true);
+	TilePortion visiblePart = getVisiblePart(convertionVector, dimension.first, dimension.second);
+	if (visiblePart.topLeft != visiblePart.bottomRight)
+	{	
+		gfx.DrawSprite(topLeft - convertionVector, model, visiblePart.topLeft, visiblePart.bottomRight, RGB(128, 0, 255), true);
 	}
 }
 
@@ -62,4 +58,21 @@ Vec2 MapObject::getCenter()
 	float x = topLeft.x + float(dimension.first) / 2.0f;
 	float y = topLeft.y + float(dimension.second) / 2.0f;
 	return Vec2(x, y);
+}
+
+TilePortion MapObject::getVisiblePart(const Vec2& convertionVector, int width, int height)
+{
+	Vec2 convertedBottomRight = Vec2(topLeft.x + float(width), topLeft.y + float(height)) - convertionVector;
+	Vec2 convertedTopLeft = topLeft - convertionVector;
+	visibilityStatus status = isRectVisible(convertedTopLeft, convertedBottomRight);
+	if (status == visibilityStatus::off)
+	{
+		return TilePortion{ Vec2(0.0f, 0.0f), Vec2(0.0f, 0.0f) };
+	}
+	else
+	{
+		Vec2 visibleTL = visibleTopLeft(convertedTopLeft, status);
+		Vec2 visibleBR = visibleBottomRight(convertedBottomRight, status);
+		return TilePortion{ visibleTL, visibleBR };
+	}
 }
