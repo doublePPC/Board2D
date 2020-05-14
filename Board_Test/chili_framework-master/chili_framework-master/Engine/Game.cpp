@@ -25,8 +25,10 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-    eGame(EmoteGame())
+    eGame(EmoteGame()),
+    test(0)
 {
+    wnd.kbd.DisableAutorepeat();
 }
 
 void Game::Go()
@@ -38,6 +40,7 @@ void Game::Go()
         const float framePart = std::min(0.0025f, dt);
         UpdateModel(framePart);
         dt -= framePart;
+        
     }
 	ComposeFrame();
 	gfx.EndFrame();
@@ -47,6 +50,10 @@ void Game::UpdateModel(float frameTimeFragment)
 {
     eGame.update(wnd.kbd, wnd.mouse, frameTimeFragment);
     if (wnd.kbd.KeyIsPressed('K'))
+    {
+        test++;
+    }
+    if (test > 100)
     {
         bool dude = true;
     }

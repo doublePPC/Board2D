@@ -46,5 +46,6 @@ private:
 	/*  User Variables              */
     FrameTime ft;
     EmoteGame eGame;
+    int test;
 	/********************************/
 };

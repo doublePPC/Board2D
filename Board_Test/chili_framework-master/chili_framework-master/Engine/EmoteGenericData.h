@@ -10,10 +10,10 @@ enum class Pathing
 
 enum class Facing
 {
-	down = 0,
-	right,
+	up = 0,
 	left,
-	up
+	right,
+	down
 };
 
 class BackgroundContainer

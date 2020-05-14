@@ -12,9 +12,12 @@ public:
 	~EmoteHuman();
 
 	void checkFacing();
-	void moveObject(Vec2 moveVect);
+	void moveObject(float dt);
 	void drawObject(Graphics& gfx, const Vec2& convertionVector);
 	void update(float dt);
+	void startMoving();
+	void accelerate(int value);
+	void stop();
 private:
 	bool isSet = false;
 	Vec2 velocity;
@@ -22,6 +25,7 @@ private:
 	int width;
 	int height;
 	int speed;
+	float moveProgression;
 	Animation animation;
 public:
 	static constexpr Color transparentColor = RGB(128, 0, 255);

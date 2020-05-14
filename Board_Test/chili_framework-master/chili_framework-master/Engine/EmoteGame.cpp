@@ -36,6 +36,25 @@ void EmoteGame::update(const Keyboard& kbd, const Mouse& mouse, float dt)
         xScroll = 1.0f;
     }
     currentMap->update(xScroll, yScroll, dt);
+    if (listCharacters.size() > 0)
+    {
+        if (kbd.KeyIsPressed('M'))
+        {
+            listCharacters[0].startMoving();
+        }
+        if (kbd.KeyIsPressed('A'))
+        {
+            listCharacters[0].accelerate(2);
+        }
+        if (kbd.KeyIsPressed('D'))
+        {
+            listCharacters[0].accelerate(-2);
+        }
+        if (kbd.KeyIsPressed('S'))
+        {
+            listCharacters[0].stop();
+        }
+    }
     for (int i = 0; i < listCharacters.size(); i++)
     {
         listCharacters[i].update(dt);

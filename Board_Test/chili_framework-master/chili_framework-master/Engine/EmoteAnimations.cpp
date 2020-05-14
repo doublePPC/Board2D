@@ -4,27 +4,27 @@ void Animation::adjustFacing(const Facing currentFacing)
 {
 	if (currentFacing == Facing::down)
 	{
-		animData.currentAnimY = 0;
+		animData.currentAnimY = 3;
 	}
 	else if (currentFacing == Facing::left)
 	{
-		animData.currentAnimY = 2;
+		animData.currentAnimY = 1;
 	}
 	else if (currentFacing == Facing::right)
 	{
-		animData.currentAnimY = 1;
+		animData.currentAnimY = 2;
 	}
 	else if (currentFacing == Facing::up)
 	{
-		animData.currentAnimY = 3;
+		animData.currentAnimY = 0;
 	}
 }
 
 void Animation::adjustAnimation(float dt)
 {
-	if (animData.currentAnimX == 0)
+	if (animData.currentAnimX == 4)
 	{
-		animData.currentAnimX = 1;
+		animData.currentAnimX = 0;
 	}
 	else
 	{
@@ -33,9 +33,9 @@ void Animation::adjustAnimation(float dt)
 		{
 			animTimeElapsed = 0.0f;
 			animData.currentAnimX++;
-			if (animData.currentAnimX > amountOfAnim)
+			if (animData.currentAnimX >= amountOfAnim)
 			{
-				animData.currentAnimX = 1;
+				animData.currentAnimX = 0;
 			}
 		}
 	}
@@ -75,7 +75,7 @@ void Animation::update(int speed, const Facing facing, float dt)
 	adjustFacing(facing);
 	if (speed == 0)
 	{
-		animData.currentAnimX = 0;
+		animData.currentAnimX = 4;
 	}
 	else
 	{

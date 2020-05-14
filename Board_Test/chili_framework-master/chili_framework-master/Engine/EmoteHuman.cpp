@@ -7,7 +7,8 @@ EmoteHuman::EmoteHuman(Vec2 startPos, const Surface& sprite, int width, int heig
 	width(width),
 	height(height),
 	speed(0),
-	animation(Animation(4, 0.25f, animationData{ width, height, 0, 0, EmoteHuman::transparentColor }))
+	moveProgression(0.0f),
+	animation(Animation(4, 0.25f, animationData{ width, height, 4, 0, EmoteHuman::transparentColor }))
 {
 	isSet = true;	
 }
@@ -19,6 +20,7 @@ EmoteHuman::EmoteHuman(const EmoteHuman& ref)
 	width(ref.width),
 	height(ref.height),
 	speed(ref.speed),
+	moveProgression(ref.moveProgression),
 	animation(ref.animation)
 {
 	isSet = true;
@@ -33,6 +35,7 @@ EmoteHuman& EmoteHuman::operator=(const EmoteHuman& ref)
 	width = ref.width;
 	height = ref.height;
 	speed = ref.speed;
+	moveProgression = ref.moveProgression;
 	animation = ref.animation;
 	isSet = true;
 	return *this;
@@ -62,10 +65,15 @@ void EmoteHuman::checkFacing()
 	}
 }
 
-void EmoteHuman::moveObject(Vec2 moveVect)
+void EmoteHuman::moveObject(float dt)
 {
-	topLeft.x += moveVect.x;
-	topLeft.y += moveVect.y;
+	moveProgression += float(speed) * dt;
+	if (moveProgression >= 1.0f)
+	{
+		topLeft.x += 1.0f * velocity.x;
+		topLeft.y += 1.0f * velocity.y;
+		moveProgression -= 1.0f;
+	}	
 }
 
 void EmoteHuman::drawObject(Graphics& gfx, const Vec2& convertionVector)
@@ -80,10 +88,39 @@ void EmoteHuman::drawObject(Graphics& gfx, const Vec2& convertionVector)
 
 void EmoteHuman::update(float dt)
 {
-	if (velocity.x != 0.0f && velocity.y != 0.0f)
+	if (velocity.x != 0.0f || velocity.y != 0.0f)
 	{
 		checkFacing();
-		moveObject(velocity);
+		moveObject(dt);
 		animation.update(speed, facing, dt);
 	}
+}
+
+void EmoteHuman::startMoving()
+{
+	velocity = Vec2(1.0f, 0.0f);
+	speed = 40;
+}
+
+void EmoteHuman::accelerate(int value)
+{
+	if (speed != 0)
+	{
+		if (speed + value < 0)
+		{
+			speed = 0;
+			velocity = Vec2(0.0f, 0.0f);
+		}
+		else
+		{
+			speed += value;
+			bool check = true;
+		}
+	}
+}
+
+void EmoteHuman::stop()
+{
+	speed = 0;
+	velocity = Vec2(0.0f, 0.0f);
 }
