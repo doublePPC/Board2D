@@ -40,15 +40,27 @@ void EmoteGame::update(Keyboard& kbd, const Mouse& mouse, float dt)
     {
         if (kbd.OneTimeKeyPress('M'))
         {
-            listCharacters[0].startMoving();
+            listCharacters[0].startMoving(0.0f, 1.0f);
+        }
+        if (kbd.OneTimeKeyPress('K'))
+        {
+            listCharacters[0].startMoving(1.0f, 0.0f);
+        }
+        if (kbd.OneTimeKeyPress('J'))
+        {
+            listCharacters[0].startMoving(-1.0f, 0.0f);
+        }
+        if (kbd.OneTimeKeyPress('I'))
+        {
+            listCharacters[0].startMoving(0.0f, -1.0f);
         }
         if (kbd.OneTimeKeyPress('A'))
         {
-            listCharacters[0].accelerate(2);
+            listCharacters[0].accelerate(5);
         }
         if (kbd.OneTimeKeyPress('D'))
         {
-            listCharacters[0].accelerate(-2);
+            listCharacters[0].accelerate(-5);
         }
         if (kbd.OneTimeKeyPress('S'))
         {

@@ -92,13 +92,13 @@ void EmoteHuman::update(float dt)
 	{
 		checkFacing();
 		moveObject(dt);
-		animation.update(speed, facing, dt);
 	}
+	animation.update(speed, facing, dt);
 }
 
-void EmoteHuman::startMoving()
+void EmoteHuman::startMoving(float xDirection, float yDirection)
 {
-	velocity = Vec2(1.0f, 0.0f);
+	velocity = Vec2(xDirection, yDirection);
 	speed = 40;
 }
 

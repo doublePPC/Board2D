@@ -15,7 +15,7 @@ public:
 	void moveObject(float dt);
 	void drawObject(Graphics& gfx, const Vec2& convertionVector);
 	void update(float dt);
-	void startMoving();
+	void startMoving(float xDirection, float yDirection);
 	void accelerate(int value);
 	void stop();
 private:
