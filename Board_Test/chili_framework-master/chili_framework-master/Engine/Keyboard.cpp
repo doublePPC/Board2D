@@ -94,6 +94,24 @@ bool Keyboard::AutorepeatIsEnabled() const
 	return autorepeatEnabled;
 }
 
+bool Keyboard::OneTimeKeyPress(unsigned char keycode)
+{
+	if (keystates[keycode] == true && keyEventTreated[keycode] == false)
+	{
+		keyEventTreated[keycode] = true;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Keyboard::SetEventTreated(unsigned char keycode)
+{
+	keyEventTreated[keycode] = true;
+}
+
 void Keyboard::OnKeyPressed( unsigned char keycode )
 {
 	keystates[ keycode ] = true;	
@@ -104,6 +122,7 @@ void Keyboard::OnKeyPressed( unsigned char keycode )
 void Keyboard::OnKeyReleased( unsigned char keycode )
 {
 	keystates[ keycode ] = false;
+	keyEventTreated[keycode] = false;
 	keybuffer.push( Keyboard::Event( Keyboard::Event::Type::Release,keycode ) );
 	TrimBuffer( keybuffer );
 }

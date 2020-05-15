@@ -81,6 +81,9 @@ public:
 	void EnableAutorepeat();
 	void DisableAutorepeat();
 	bool AutorepeatIsEnabled() const;
+	// user added
+	bool OneTimeKeyPress(unsigned char keycode);
+	void SetEventTreated(unsigned char keycode);
 private:
 	void OnKeyPressed( unsigned char keycode );
 	void OnKeyReleased( unsigned char keycode );
@@ -95,4 +98,6 @@ private:
 	std::bitset<nKeys> keystates;
 	std::queue<Event> keybuffer;
 	std::queue<char> charbuffer;
+	// user added
+	std::bitset<nKeys> keyEventTreated;
 };

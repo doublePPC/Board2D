@@ -9,7 +9,7 @@ public:
 	EmoteGame();
 	~EmoteGame();
 
-	void update(const Keyboard& kbd, const Mouse& mouse, float dt);
+	void update(Keyboard& kbd, const Mouse& mouse, float dt);
 	void drawMap(Graphics& gfx);
 private:
 	BackgroundContainer backgroundAssets;

@@ -28,7 +28,6 @@ Game::Game( MainWindow& wnd )
     eGame(EmoteGame()),
     test(0)
 {
-    wnd.kbd.DisableAutorepeat();
 }
 
 void Game::Go()
@@ -49,14 +48,6 @@ void Game::Go()
 void Game::UpdateModel(float frameTimeFragment)
 {
     eGame.update(wnd.kbd, wnd.mouse, frameTimeFragment);
-    if (wnd.kbd.KeyIsPressed('K'))
-    {
-        test++;
-    }
-    if (test > 100)
-    {
-        bool dude = true;
-    }
 }
 
 void Game::ComposeFrame()

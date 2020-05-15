@@ -47,5 +47,6 @@ private:
     FrameTime ft;
     EmoteGame eGame;
     int test;
+    bool kEvent = false;
 	/********************************/
 };
