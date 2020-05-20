@@ -1,6 +1,7 @@
 #include "EmoteMap.h"
 
 EmoteMap::EmoteMap(BackgroundContainer& backgrounds, DecorObjectContainer& decors)
+	: chipSet(backgrounds.getCitySet1())
 {
 	BrdData data;
 	data.Columns = 16;
@@ -22,9 +23,9 @@ EmoteMap::~EmoteMap()
 	listDecors.clear();
 }
 
-void EmoteMap::draw(Graphics& gfx, BackgroundContainer& backgrounds, DecorObjectContainer decors)
+void EmoteMap::draw(Graphics& gfx, DecorObjectContainer decors)
 {
-	drawBackground(gfx, backgrounds);
+	drawBackground(gfx);
 	board.draw(gfx);
 	if (listDecors.size() > 0)
 	{
@@ -40,7 +41,7 @@ void EmoteMap::update(float xScroll, float yScroll, float dt)
 	board.update(xScroll, yScroll, dt);
 }
 
-void EmoteMap::drawBackground(Graphics& gfx, BackgroundContainer& backgrounds)
+void EmoteMap::drawBackground(Graphics& gfx)
 {
 	std::pair<int, int> rowCol = board.rowColToDraw();
 	int startId = board.pos2Id(board.getCamTopLeft());
@@ -51,19 +52,9 @@ void EmoteMap::drawBackground(Graphics& gfx, BackgroundContainer& backgrounds)
 			int tileId = i * 16 + startId + j;
 			TilePortion visibleArea = board.getVisiblePart(tileId);
 			Vec2 tileTopLeft = board.getTileConvTL(tileId);
-			//gfx.DrawRect(visibleArea.topLeft, visibleArea.bottomRight, map[tileId]);
-			if (backgroundTilesType[tileId] == 0)
-			{
-				gfx.DrawSprite(tileTopLeft, backgrounds.getGrass(), visibleArea.topLeft, visibleArea.bottomRight, RGB(255, 0, 128), false);
-			}
-			else if (backgroundTilesType[tileId] == 1)
-			{
-				gfx.DrawSprite(tileTopLeft, backgrounds.getAsphalt(), visibleArea.topLeft, visibleArea.bottomRight, RGB(255, 0, 128), false);
-			}
-			else if (backgroundTilesType[tileId] == 2)
-			{
-				gfx.DrawSprite(tileTopLeft, backgrounds.getSidewalk(), visibleArea.topLeft, visibleArea.bottomRight, RGB(255, 0, 128), false);
-			}
+			int startX = backgroundTilesType[tileId].xId * 100;
+			int startY = backgroundTilesType[tileId].yId * 100;
+			gfx.DrawSheetFragment(tileTopLeft, chipSet, visibleArea.topLeft, visibleArea.bottomRight, Colors::Magenta, startX, startY);
 		}
 	}
 }

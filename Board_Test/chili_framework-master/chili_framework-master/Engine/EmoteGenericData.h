@@ -10,10 +10,10 @@ enum class Pathing
 
 enum class Facing
 {
-	up = 0,
+	down = 0,
 	left,
 	right,
-	down
+	up
 };
 
 class BackgroundContainer
@@ -22,13 +22,15 @@ public:
 	BackgroundContainer();
 	~BackgroundContainer() = default;
 
-	Surface& getGrass();
-	Surface& getAsphalt();
-	Surface& getSidewalk();
+	//Surface& getGrass();
+	//Surface& getAsphalt();
+	//Surface& getSidewalk();
+	Surface& getCitySet1();
 private:
-	Surface grass;
-	Surface asphalt;
-	Surface sidewalk;
+	//Surface grass;
+	//Surface asphalt;
+	//Surface sidewalk;
+	Surface citySet1;
 };
 
 class DecorObjectContainer

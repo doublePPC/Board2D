@@ -4,7 +4,7 @@ void Animation::adjustFacing(const Facing currentFacing)
 {
 	if (currentFacing == Facing::down)
 	{
-		animData.currentAnimY = 3;
+		animData.currentAnimY = 0;
 	}
 	else if (currentFacing == Facing::left)
 	{
@@ -16,7 +16,7 @@ void Animation::adjustFacing(const Facing currentFacing)
 	}
 	else if (currentFacing == Facing::up)
 	{
-		animData.currentAnimY = 0;
+		animData.currentAnimY = 3;
 	}
 }
 

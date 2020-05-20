@@ -75,7 +75,7 @@ void EmoteGame::update(Keyboard& kbd, const Mouse& mouse, float dt)
 
 void EmoteGame::drawMap(Graphics& gfx)
 {
-    currentMap->draw(gfx, backgroundAssets, decorAssets);
+    currentMap->draw(gfx, decorAssets);
     for (int i = 0; i < listCharacters.size(); i++)
     {
         listCharacters[i].drawObject(gfx, currentMap->getCameraTopLeft());

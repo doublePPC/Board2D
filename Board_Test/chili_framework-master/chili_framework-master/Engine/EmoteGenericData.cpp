@@ -1,26 +1,32 @@
 #include "EmoteGenericData.h"
 
 BackgroundContainer::BackgroundContainer()
-	: grass(Surface("Ressources\\Gazon.bmp")),
+	: citySet1(Surface("Ressources\\CitySet1.bmp"))
+{
+	/*grass(Surface("Ressources\\Gazon.bmp")),
 	asphalt(Surface("Ressources\\Asphalte.bmp")),
-	sidewalk(Surface("Ressources\\Trottoir.bmp"))
-{
+	sidewalk(Surface("Ressources\\Trottoir.bmp"))*/
 }
 
-Surface& BackgroundContainer::getGrass()
+Surface& BackgroundContainer::getCitySet1()
 {
-	return grass;
+	return citySet1;
 }
 
-Surface& BackgroundContainer::getAsphalt()
-{
-	return asphalt;
-}
-
-Surface& BackgroundContainer::getSidewalk()
-{
-	return sidewalk;
-}
+//Surface& BackgroundContainer::getGrass()
+//{
+//	return grass;
+//}
+//
+//Surface& BackgroundContainer::getAsphalt()
+//{
+//	return asphalt;
+//}
+//
+//Surface& BackgroundContainer::getSidewalk()
+//{
+//	return sidewalk;
+//}
 
 DecorObjectContainer::DecorObjectContainer()
 	: walkSign(Surface("Ressources\\TraversePiéton62x133.bmp"))
