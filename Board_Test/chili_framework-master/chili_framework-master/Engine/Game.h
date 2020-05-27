@@ -20,10 +20,11 @@
  ******************************************************************************************/
 #pragma once
 
-#include "Keyboard.h"
-#include "Mouse.h"
-#include "Time.h"
-#include "EmoteGame.h"
+#include "Windows\\Keyboard.h"
+#include "Windows\\Mouse.h"
+#include "Generic\\Time.h"
+#include "Emote_Game\\EmoteGame.h"
+#include "Sounds_Graphics\\Graphics.h"
 
 
 class Game

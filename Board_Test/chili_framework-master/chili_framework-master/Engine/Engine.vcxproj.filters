@@ -57,161 +57,161 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChiliException.h">
-      <Filter>Header Files\Errors</Filter>
-    </ClInclude>
-    <ClInclude Include="DXErr.h">
-      <Filter>Header Files\Errors</Filter>
-    </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Header Files\Generic</Filter>
-    </ClInclude>
-    <ClInclude Include="ChiliWin.h">
-      <Filter>Header Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWindow.h">
-      <Filter>Header Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Keyboard.h">
-      <Filter>Header Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Mouse.h">
-      <Filter>Header Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Header Files\Sound&amp;Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundEffect.h">
-      <Filter>Header Files\Sound&amp;Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Header Files\Sound&amp;Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="COMInitializer.h">
-      <Filter>Header Files\Sound&amp;Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>Header Files\Generic</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
     <ClInclude Include="SpriteCodex.h">
       <Filter>Header Files\Sound&amp;Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files\Generic</Filter>
+    <ClInclude Include="Windows\ChiliWin.h">
+      <Filter>Header Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="EmoteHuman.h">
+    <ClInclude Include="Board\Board.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Board\BoardGenericData.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Emote_Game\EmoteAnimations.h">
       <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="BoardGenericData.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="EmoteGame.h">
+    <ClInclude Include="Emote_Game\EmoteDecor.h">
       <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
-    <ClInclude Include="MapObject.h">
-      <Filter>Header Files\Board</Filter>
+    <ClInclude Include="Emote_Game\EmoteGame.h">
+      <Filter>Header Files\EmoteGame</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
+    <ClInclude Include="Emote_Game\EmoteGenericData.h">
+      <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Emote_Game\EmoteHuman.h">
+      <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Emote_Game\EmoteMap.h">
+      <Filter>Header Files\EmoteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Sounds_Graphics\Graphics.h">
       <Filter>Header Files\Sound&amp;Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="EmoteGenericData.h">
-      <Filter>Header Files\EmoteGame</Filter>
+    <ClInclude Include="Windows\Keyboard.h">
+      <Filter>Header Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="EmoteDecor.h">
-      <Filter>Header Files\EmoteGame</Filter>
+    <ClInclude Include="Windows\MainWindow.h">
+      <Filter>Header Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="EmoteMap.h">
-      <Filter>Header Files\EmoteGame</Filter>
+    <ClInclude Include="Board\MapObject.h">
+      <Filter>Header Files\Board</Filter>
     </ClInclude>
-    <ClInclude Include="EmoteAnimations.h">
-      <Filter>Header Files\EmoteGame</Filter>
+    <ClInclude Include="Windows\Mouse.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Chili_Other_Stuff\ChiliException.h">
+      <Filter>Header Files\Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="Chili_Other_Stuff\DXErr.h">
+      <Filter>Header Files\Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\COMInitializer.h">
+      <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Board\Screen.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Sounds_Graphics\Sound.h">
+      <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Sounds_Graphics\SoundEffect.h">
+      <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Sounds_Graphics\Sprite.h">
+      <Filter>Header Files\Sound&amp;Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic\Colors.h">
+      <Filter>Header Files\Generic</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic\Time.h">
+      <Filter>Header Files\Generic</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic\Vec2.h">
+      <Filter>Header Files\Generic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="COMInitializer.cpp">
-      <Filter>Source Files\Sound&amp;Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="DXErr.cpp">
-      <Filter>Source Files\Errors</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Source Files\Sound&amp;Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>Source Files\Sound&amp;Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Vec2.cpp">
-      <Filter>Source Files\Generic</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteCodex.cpp">
       <Filter>Source Files\Sound&amp;Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files\Generic</Filter>
+    <ClCompile Include="Board\Board.cpp">
+      <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="EmoteHuman.cpp">
+    <ClCompile Include="Board\BoardGenericData.cpp">
+      <Filter>Source Files\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Emote_Game\EmoteAnimations.cpp">
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="EmoteGame.cpp">
+    <ClCompile Include="Emote_Game\EmoteDecor.cpp">
       <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
-    <ClCompile Include="MapObject.cpp">
-      <Filter>Source Files\Board</Filter>
+    <ClCompile Include="Emote_Game\EmoteGame.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
-    <ClCompile Include="BoardGenericData.cpp">
-      <Filter>Source Files\Board</Filter>
+    <ClCompile Include="Emote_Game\EmoteGenericData.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
+    <ClCompile Include="Emote_Game\EmoteHuman.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Emote_Game\EmoteMap.cpp">
+      <Filter>Source Files\EmoteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Sounds_Graphics\Graphics.cpp">
       <Filter>Source Files\Sound&amp;Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="EmoteGenericData.cpp">
-      <Filter>Source Files\EmoteGame</Filter>
+    <ClCompile Include="Windows\Keyboard.cpp">
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="EmoteDecor.cpp">
-      <Filter>Source Files\EmoteGame</Filter>
+    <ClCompile Include="Windows\Main.cpp">
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="EmoteMap.cpp">
-      <Filter>Source Files\EmoteGame</Filter>
+    <ClCompile Include="Windows\MainWindow.cpp">
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="EmoteAnimations.cpp">
-      <Filter>Source Files\EmoteGame</Filter>
+    <ClCompile Include="Board\MapObject.cpp">
+      <Filter>Source Files\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Mouse.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Chili_Other_Stuff\DXErr.cpp">
+      <Filter>Source Files\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\COMInitializer.cpp">
+      <Filter>Source Files\Sound&amp;Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Board\Screen.cpp">
+      <Filter>Source Files\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Sounds_Graphics\Sound.cpp">
+      <Filter>Source Files\Sound&amp;Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Sounds_Graphics\Sprite.cpp">
+      <Filter>Source Files\Sound&amp;Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Generic\Time.cpp">
+      <Filter>Source Files\Generic</Filter>
+    </ClCompile>
+    <ClCompile Include="Generic\Vec2.cpp">
+      <Filter>Source Files\Generic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="FramebufferPS.hlsl">
+    <FxCompile Include="Chili_Other_Stuff\FramebufferPS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="FramebufferVS.hlsl">
+    <FxCompile Include="Chili_Other_Stuff\FramebufferVS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
@@ -222,6 +222,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Chili.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Ressources\Emote_Ress\TraversePiéton62x133.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Ressources\Emote_Ress\CitySet1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Ressources\Emote_Ress\ReiscantChar1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

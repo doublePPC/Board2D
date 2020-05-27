@@ -136,61 +136,61 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
-    <ClInclude Include="BoardGenericData.h" />
-    <ClInclude Include="ChiliException.h" />
-    <ClInclude Include="ChiliWin.h" />
-    <ClInclude Include="Colors.h" />
-    <ClInclude Include="COMInitializer.h" />
-    <ClInclude Include="DXErr.h" />
-    <ClInclude Include="EmoteAnimations.h" />
-    <ClInclude Include="EmoteDecor.h" />
-    <ClInclude Include="EmoteGame.h" />
-    <ClInclude Include="EmoteGenericData.h" />
-    <ClInclude Include="EmoteHuman.h" />
-    <ClInclude Include="EmoteMap.h" />
+    <ClInclude Include="Board\Board.h" />
+    <ClInclude Include="Board\BoardGenericData.h" />
+    <ClInclude Include="Chili_Other_Stuff\ChiliException.h" />
+    <ClInclude Include="Windows\ChiliWin.h" />
+    <ClInclude Include="Generic\Colors.h" />
+    <ClInclude Include="Windows\COMInitializer.h" />
+    <ClInclude Include="Chili_Other_Stuff\DXErr.h" />
+    <ClInclude Include="Emote_Game\EmoteAnimations.h" />
+    <ClInclude Include="Emote_Game\EmoteDecor.h" />
+    <ClInclude Include="Emote_Game\EmoteGame.h" />
+    <ClInclude Include="Emote_Game\EmoteGenericData.h" />
+    <ClInclude Include="Emote_Game\EmoteHuman.h" />
+    <ClInclude Include="Emote_Game\EmoteMap.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="MapObject.h" />
-    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Sounds_Graphics\Graphics.h" />
+    <ClInclude Include="Windows\Keyboard.h" />
+    <ClInclude Include="Windows\MainWindow.h" />
+    <ClInclude Include="Sounds_Graphics\Sprite.h" />
+    <ClInclude Include="Board\MapObject.h" />
+    <ClInclude Include="Windows\Mouse.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Screen.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="Board\Screen.h" />
+    <ClInclude Include="Sounds_Graphics\Sound.h" />
+    <ClInclude Include="Sounds_Graphics\SoundEffect.h" />
     <ClInclude Include="SpriteCodex.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Vec2.h" />
+    <ClInclude Include="Generic\Time.h" />
+    <ClInclude Include="Generic\Vec2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="BoardGenericData.cpp" />
-    <ClCompile Include="COMInitializer.cpp" />
-    <ClCompile Include="DXErr.cpp" />
-    <ClCompile Include="EmoteAnimations.cpp" />
-    <ClCompile Include="EmoteDecor.cpp" />
-    <ClCompile Include="EmoteGame.cpp" />
-    <ClCompile Include="EmoteGenericData.cpp" />
-    <ClCompile Include="EmoteHuman.cpp" />
-    <ClCompile Include="EmoteMap.cpp" />
+    <ClCompile Include="Board\Board.cpp" />
+    <ClCompile Include="Board\BoardGenericData.cpp" />
+    <ClCompile Include="Windows\COMInitializer.cpp" />
+    <ClCompile Include="Chili_Other_Stuff\DXErr.cpp" />
+    <ClCompile Include="Emote_Game\EmoteAnimations.cpp" />
+    <ClCompile Include="Emote_Game\EmoteDecor.cpp" />
+    <ClCompile Include="Emote_Game\EmoteGame.cpp" />
+    <ClCompile Include="Emote_Game\EmoteGenericData.cpp" />
+    <ClCompile Include="Emote_Game\EmoteHuman.cpp" />
+    <ClCompile Include="Emote_Game\EmoteMap.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="MapObject.cpp" />
-    <ClCompile Include="Mouse.cpp" />
-    <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Sounds_Graphics\Graphics.cpp" />
+    <ClCompile Include="Windows\Keyboard.cpp" />
+    <ClCompile Include="Windows\Main.cpp" />
+    <ClCompile Include="Windows\MainWindow.cpp" />
+    <ClCompile Include="Sounds_Graphics\Sprite.cpp" />
+    <ClCompile Include="Board\MapObject.cpp" />
+    <ClCompile Include="Windows\Mouse.cpp" />
+    <ClCompile Include="Board\Screen.cpp" />
+    <ClCompile Include="Sounds_Graphics\Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Vec2.cpp" />
+    <ClCompile Include="Generic\Time.cpp" />
+    <ClCompile Include="Generic\Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="FramebufferPS.hlsl">
+    <FxCompile Include="Chili_Other_Stuff\FramebufferPS.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">FramebufferPS</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0_level_9_1</ShaderModel>
@@ -220,7 +220,7 @@
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename)Bytecode</VariableName>
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename)Bytecode</VariableName>
     </FxCompile>
-    <FxCompile Include="FramebufferVS.hlsl">
+    <FxCompile Include="Chili_Other_Stuff\FramebufferVS.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">FramebufferVS</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0_level_9_1</ShaderModel>
@@ -256,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Chili.ico" />
+    <Image Include="Ressources\Emote_Ress\CitySet1.bmp" />
+    <Image Include="Ressources\Emote_Ress\ReiscantChar1.bmp" />
+    <Image Include="Ressources\Emote_Ress\TraversePiéton62x133.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
