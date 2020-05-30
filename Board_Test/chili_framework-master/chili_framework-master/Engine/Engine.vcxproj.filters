@@ -135,6 +135,9 @@
     <ClInclude Include="Generic\Vec2.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
+    <ClInclude Include="Sounds_Graphics\PixelEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

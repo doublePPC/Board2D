@@ -360,15 +360,16 @@ void Graphics::PutPixel( int x,int y,Color c )
 	assert( x < int( Graphics::ScreenWidth ) );
 	assert( y >= 0 );
 	assert( y < int( Graphics::ScreenHeight ) );
+	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
+}
 
-	// Asserts commented since shapes could need to be drawn partially close to borders
-	// Still, no pixels can be drawn off the border though
-	if (x >= 0 && y >= 0 
-		&& x < int(Graphics::ScreenWidth)  
-		&& y < int(Graphics::ScreenHeight))
-	{
-		pSysBuffer[Graphics::ScreenWidth * y + x] = c;
-	}
+Color Graphics::GetPixel(int x, int y) const
+{
+	assert(x >= 0);
+	assert(x < int(Graphics::ScreenWidth));
+	assert(y >= 0);
+	assert(y < int(Graphics::ScreenHeight));
+	return pSysBuffer[Graphics::ScreenWidth * y + x];
 }
 
 

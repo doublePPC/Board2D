@@ -26,6 +26,7 @@
 #include "..\\Generic\\Colors.h"
 #include "..\\Generic\\Vec2.h"
 #include "Sprite.h"
+#include "PixelEffect.h"
 
 class Graphics
 {
@@ -57,11 +58,27 @@ public:
 	void DrawRect(const Vec2& TopLeft, const Vec2& BottomRight, Color c);
 	void DrawSprite(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR, Color transp, bool withTransp);
 	void DrawSheetFragment(const Vec2& pos, const Surface& surf, const Vec2& visibleTL, const Vec2& visibleBR, Color transp, int startShX, int startShY);
+	template <typename E>
+	void DrawSpriteSheet(const Vec2& pos, const Vec2& visTL, const Vec2& visBR, const Surface& surf, int startShX, int startShY, E effect)
+	{
+		const Vec2 start = Vec2(visTL.x - pos.x, visTL.y - pos.y);
+		const Vec2 end = Vec2(visBR.x - visTL.x, visBR.y - visTL.y);
+
+		for (int y = 0; y <= int(end.y); y++)
+		{
+			for (int x = 0; x <= int(end.x); x++)
+			{
+				Color colorToDraw = effect(GetPixel(int(visTL.x) + x, int(visTL.y) + y), surf.getPixel(x + int(start.x) + startShX, y + int(start.y) + startShY));
+				PutPixel(int(visTL.x) + x, int(visTL.y) + y, colorToDraw);
+			}
+		}
+	}
 	void PutPixel( int x,int y,int r,int g,int b )
 	{
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
+	Color GetPixel(int x, int y) const;
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;

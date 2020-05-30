@@ -87,5 +87,6 @@ void Animation::draw(Surface& refSprite, Graphics& gfx, const Vec2& convertedPos
 {
 	int xStart = animData.currentAnimX * animData.sheetUnitWidth;
 	int yStart = animData.currentAnimY * animData.sheetUnitHeight;
-	gfx.DrawSheetFragment(convertedPos, refSprite, visiblePart.topLeft, visiblePart.bottomRight, animData.transparentColor, xStart, yStart);
+	//gfx.DrawSheetFragment(convertedPos, refSprite, visiblePart.topLeft, visiblePart.bottomRight, animData.transparentColor, xStart, yStart);
+	gfx.DrawSpriteSheet(convertedPos, visiblePart.topLeft, visiblePart.bottomRight, refSprite, xStart, yStart, PixelEffects::FixedColorTransparency(animData.transparentColor));
 }

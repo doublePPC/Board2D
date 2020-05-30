@@ -139,6 +139,7 @@
     <ClInclude Include="Board\Board.h" />
     <ClInclude Include="Board\BoardGenericData.h" />
     <ClInclude Include="Chili_Other_Stuff\ChiliException.h" />
+    <ClInclude Include="Sounds_Graphics\PixelEffect.h" />
     <ClInclude Include="Windows\ChiliWin.h" />
     <ClInclude Include="Generic\Colors.h" />
     <ClInclude Include="Windows\COMInitializer.h" />

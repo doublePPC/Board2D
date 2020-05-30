@@ -24,8 +24,4 @@ private:
 	int width;
 	int height;
 	Color* pPixels = nullptr;
-public:
-	static constexpr Color grass = RGB(32, 255, 32);
-	static constexpr Color asphalt = RGB(42, 42, 42);
-	static constexpr Color sidewalk = RGB(145, 145, 145);
 };
