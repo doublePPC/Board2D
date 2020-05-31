@@ -4,7 +4,8 @@ EmoteGame::EmoteGame()
 	: backgroundAssets(BackgroundContainer()),
     decorAssets(DecorObjectContainer()),
     currentMap(nullptr),
-    reiscant1(Surface("Ressources\\Emote_Ress\\ReiscantChar1.bmp"))
+    reiscant1(Surface("Ressources\\Emote_Ress\\ReiscantChar1.bmp")),
+    scoreboard(e_Interface(Colors::Blue, Vec2(700.0f, 0.0f), Vec2(799.0f, 599.0f)))
 {
     listMaps.emplace_back(EmoteMap(backgroundAssets, decorAssets));
     currentMap = &listMaps[0];
@@ -80,4 +81,5 @@ void EmoteGame::drawMap(Graphics& gfx)
     {
         listCharacters[i].drawObject(gfx, currentMap->getCameraTopLeft());
     }
+    scoreboard.draw(gfx);
 }

@@ -2,6 +2,7 @@
 #include "EmoteMap.h"
 #include "..\\Windows\\Keyboard.h"
 #include "..\\Windows\\Mouse.h"
+#include "EmoteInterface.h"
 
 class EmoteGame
 {
@@ -18,4 +19,5 @@ private:
 	EmoteMap* currentMap;
 	Surface reiscant1;
 	std::vector<EmoteHuman> listCharacters;
+	e_Interface scoreboard;
 };
