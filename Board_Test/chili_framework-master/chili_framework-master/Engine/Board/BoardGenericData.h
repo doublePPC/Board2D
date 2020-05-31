@@ -31,7 +31,7 @@ struct BrdData
 	int Tile_Height;
 	Color Grid_DefaultColor;
 
-	static const int Cam_X_Size = Graphics::ScreenWidth;
+	static const int Cam_X_Size = Graphics::ScreenWidth -100;
 	static const int Cam_Y_Size = Graphics::ScreenHeight;
 	static const int Cam_Speed = 600;
 	static const bool Grid_DefaultViewable = false;

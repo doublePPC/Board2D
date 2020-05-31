@@ -161,7 +161,6 @@
     <ClInclude Include="Board\Screen.h" />
     <ClInclude Include="Sounds_Graphics\Sound.h" />
     <ClInclude Include="Sounds_Graphics\SoundEffect.h" />
-    <ClInclude Include="SpriteCodex.h" />
     <ClInclude Include="Generic\Time.h" />
     <ClInclude Include="Generic\Vec2.h" />
   </ItemGroup>
@@ -186,7 +185,6 @@
     <ClCompile Include="Windows\Mouse.cpp" />
     <ClCompile Include="Board\Screen.cpp" />
     <ClCompile Include="Sounds_Graphics\Sound.cpp" />
-    <ClCompile Include="SpriteCodex.cpp" />
     <ClCompile Include="Generic\Time.cpp" />
     <ClCompile Include="Generic\Vec2.cpp" />
   </ItemGroup>

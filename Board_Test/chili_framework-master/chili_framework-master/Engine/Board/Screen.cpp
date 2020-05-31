@@ -4,7 +4,7 @@ Screen::Screen(const BrdData& brdData)
 {
 	brdPxWidth = brdData.Columns * brdData.Tile_Width;
 	brdPxHeight = brdData.Rows * brdData.Tile_Height;
-	if (Graphics::ScreenWidth >= brdPxWidth)
+	if (BrdData::Cam_X_Size >= brdPxWidth)
 	{
 		limitWidth = BrdData::Cam_X_Size;
 	}
@@ -12,7 +12,7 @@ Screen::Screen(const BrdData& brdData)
 	{
 		limitWidth = brdPxWidth -1;
 	}
-	if (Graphics::ScreenHeight >= brdPxHeight)
+	if (BrdData::Cam_Y_Size >= brdPxHeight)
 	{
 		limitHeight = BrdData::Cam_Y_Size;
 	}
@@ -57,7 +57,7 @@ Screen::~Screen()
 
 void Screen::update(float xMov, float yMov, float deltaTime)
 {
-	if (limitWidth > Graphics::ScreenWidth && limitHeight > Graphics::ScreenHeight)
+	if (limitWidth > BrdData::Cam_X_Size&& limitHeight > BrdData::Cam_Y_Size)
 	{
 		int horiMov = int(xMov * scrollSpeed * deltaTime);
 		int vertMov = int(yMov * scrollSpeed * deltaTime);
@@ -66,13 +66,13 @@ void Screen::update(float xMov, float yMov, float deltaTime)
 		{
 			// the camera new position would be beyond the right limit
 			bottomRight = Vec2(float(limitWidth), bottomRight.y);
-			topLeft = Vec2(bottomRight.x - float(Graphics::ScreenWidth - 1), topLeft.y);
+			topLeft = Vec2(bottomRight.x - float(BrdData::Cam_X_Size - 1), topLeft.y);
 		}
 		else if (int(topLeft.x) + horiMov < 0)
 		{
 			// the camera new position would be beyond the left limit
 			topLeft = Vec2(0.0f, topLeft.y);
-			bottomRight = Vec2(float(Graphics::ScreenWidth - 1), bottomRight.y);
+			bottomRight = Vec2(float(BrdData::Cam_X_Size - 1), bottomRight.y);
 		}
 		else
 		{
@@ -85,13 +85,13 @@ void Screen::update(float xMov, float yMov, float deltaTime)
 		{
 			// the camera new position would be beyond the bottom limit
 			bottomRight = Vec2(bottomRight.x, float(limitHeight));
-			topLeft = Vec2(topLeft.x, bottomRight.y - float(Graphics::ScreenHeight - 1));
+			topLeft = Vec2(topLeft.x, bottomRight.y - float(BrdData::Cam_Y_Size - 1));
 		}
 		else if (int(topLeft.y) + vertMov < 0)
 		{
 			// the camera new position would be beyond the top limit
 			topLeft = Vec2(topLeft.x, 0.0f);
-			bottomRight = Vec2(bottomRight.x, float(Graphics::ScreenHeight - 1));
+			bottomRight = Vec2(bottomRight.x, float(BrdData::Cam_Y_Size - 1));
 		}
 		else
 		{
@@ -116,18 +116,18 @@ Vec2 Screen::convertPos(const Vec2& posToConvert)
 void Screen::alignCenter()
 {
 	int x = 0, y = 0;
-	if (brdPxWidth < Graphics::ScreenWidth)
+	if (brdPxWidth < BrdData::Cam_X_Size)
 	{
-		if ((Graphics::ScreenWidth - brdPxWidth) / 2 >= 1)
+		if ((BrdData::Cam_X_Size - brdPxWidth) / 2 >= 1)
 		{
-			x = (Graphics::ScreenWidth - brdPxWidth) / 2;
+			x = (BrdData::Cam_X_Size - brdPxWidth) / 2;
 		}
 	}
-	if (brdPxHeight < Graphics::ScreenHeight)
+	if (brdPxHeight < BrdData::Cam_Y_Size)
 	{
-		if ((Graphics::ScreenHeight - brdPxHeight) / 2 >= 1)
+		if ((BrdData::Cam_Y_Size - brdPxHeight) / 2 >= 1)
 		{
-			y = (Graphics::ScreenHeight - brdPxHeight) / 2;
+			y = (BrdData::Cam_Y_Size - brdPxHeight) / 2;
 		}
 	}
 	offset = Vec2(float(x), float(y));

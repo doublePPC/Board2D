@@ -83,13 +83,13 @@ std::pair<int,int> Board::rowColToDraw()
 {
 	int amountOfCol = 0;
 	int amountOfRow = 0;
-	if (Graphics::ScreenWidth >= columns * tileWidth)
+	if (BrdData::Cam_X_Size >= columns * tileWidth)
 	{
 		amountOfCol = columns;
 	}
 	else
 	{ 
-		if (int(camera.topLeft.x) + Graphics::ScreenWidth >= columns * tileWidth)
+		if (int(camera.topLeft.x) + BrdData::Cam_X_Size >= columns * tileWidth)
 		{
 			// there is not enough tiles left in the row to fill the screen size
 			amountOfCol = ((columns * tileWidth) - int(camera.topLeft.x)) / tileWidth;
@@ -101,20 +101,20 @@ std::pair<int,int> Board::rowColToDraw()
 		else
 		{
 			// there is enough tiles left in the row to fill the screen
-			amountOfCol = Graphics::ScreenWidth / tileWidth;
+			amountOfCol = BrdData::Cam_X_Size / tileWidth;
 			if (getTopLeft(pos2Id(camera.topLeft)).x != camera.topLeft.x)
 			{
 				amountOfCol++;
 			}
 		}
 	}
-	if (Graphics::ScreenHeight >= rows * tileHeight)
+	if (BrdData::Cam_Y_Size >= rows * tileHeight)
 	{
 		amountOfRow = rows;
 	}
 	else
 	{
-		if (int(camera.topLeft.y) + Graphics::ScreenHeight >= rows * tileHeight)
+		if (int(camera.topLeft.y) + BrdData::Cam_Y_Size >= rows * tileHeight)
 		{
 			// there is not enough tiles left in the column to fill the screen size
 			amountOfRow = ((rows * tileHeight) - int(camera.topLeft.y)) / tileHeight;
@@ -126,7 +126,7 @@ std::pair<int,int> Board::rowColToDraw()
 		else
 		{
 			// there is enough tiles left in the column to fill the screen
-			amountOfRow = Graphics::ScreenHeight / tileHeight;
+			amountOfRow = BrdData::Cam_Y_Size / tileHeight;
 			if (getTopLeft(pos2Id(camera.topLeft)).y != camera.topLeft.y)
 			{
 				amountOfRow++;

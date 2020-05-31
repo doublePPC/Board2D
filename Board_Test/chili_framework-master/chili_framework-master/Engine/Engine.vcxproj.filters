@@ -60,9 +60,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files\Generic</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteCodex.h">
-      <Filter>Header Files\Sound&amp;Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="Windows\ChiliWin.h">
       <Filter>Header Files\Window</Filter>
     </ClInclude>
@@ -142,9 +139,6 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteCodex.cpp">
-      <Filter>Source Files\Sound&amp;Graphic</Filter>
     </ClCompile>
     <ClCompile Include="Board\Board.cpp">
       <Filter>Source Files\Board</Filter>

@@ -4,70 +4,70 @@ visibilityStatus isRectVisible(const Vec2& topLeftPos, const Vec2& botRightPos)
 {
 	// works with converted coordinates
 	if (int(botRightPos.x) >= 0 &&
-		int(topLeftPos.x) < Graphics::ScreenWidth &&
+		int(topLeftPos.x) < BrdData::Cam_X_Size &&
 		int(botRightPos.y) >= 0 &&
-		int(topLeftPos.y) < Graphics::ScreenHeight)
+		int(topLeftPos.y) < BrdData::Cam_Y_Size)
 	{
 		if (int(topLeftPos.x) >= 0 &&
-			int(botRightPos.x) < Graphics::ScreenWidth &&
+			int(botRightPos.x) < BrdData::Cam_X_Size &&
 			int(topLeftPos.y) >= 0 &&
-			int(botRightPos.y) < Graphics::ScreenHeight)
+			int(botRightPos.y) < BrdData::Cam_Y_Size)
 		{
 			return visibilityStatus::total;
 		}
 		else
 		{
-			if (int(botRightPos.x) < Graphics::ScreenWidth &&
-				int(botRightPos.y) < Graphics::ScreenHeight &&
+			if (int(botRightPos.x) < BrdData::Cam_X_Size &&
+				int(botRightPos.y) < BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) < 0 &&
 				int(topLeftPos.y) < 0)
 			{
 				return visibilityStatus::partTL;
 			}
-			if (int(botRightPos.x) < Graphics::ScreenWidth &&
-				int(botRightPos.y) >= Graphics::ScreenHeight &&
+			if (int(botRightPos.x) < BrdData::Cam_X_Size &&
+				int(botRightPos.y) >= BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) < 0 &&
-				int(topLeftPos.y) < Graphics::ScreenHeight)
+				int(topLeftPos.y) < BrdData::Cam_Y_Size)
 			{
 				return visibilityStatus::partBL;
 			}
-			if (int(botRightPos.x) >= Graphics::ScreenWidth &&
-				int(botRightPos.y) >= Graphics::ScreenHeight &&
+			if (int(botRightPos.x) >= BrdData::Cam_X_Size &&
+				int(botRightPos.y) >= BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) >= 0 &&
 				int(topLeftPos.y) >= 0)
 			{
 				return visibilityStatus::partBR;
 			}
-			if (int(botRightPos.x) >= Graphics::ScreenWidth &&
-				int(botRightPos.y) < Graphics::ScreenHeight &&
+			if (int(botRightPos.x) >= BrdData::Cam_X_Size &&
+				int(botRightPos.y) < BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) >= 0 &&
 				int(topLeftPos.y) < 0)
 			{
 				return visibilityStatus::partTR;
 			}
-			if (int(botRightPos.x) < Graphics::ScreenWidth &&
-				int(botRightPos.y) < Graphics::ScreenHeight &&
+			if (int(botRightPos.x) < BrdData::Cam_X_Size &&
+				int(botRightPos.y) < BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) < 0 &&
 				int(topLeftPos.y) >= 0)
 			{
 				return visibilityStatus::partLeft;
 			}
-			if (int(botRightPos.x) < Graphics::ScreenWidth &&
-				int(botRightPos.y) < Graphics::ScreenHeight &&
+			if (int(botRightPos.x) < BrdData::Cam_X_Size &&
+				int(botRightPos.y) < BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) >= 0 &&
 				int(topLeftPos.y) < 0)
 			{
 				return visibilityStatus::partTop;
 			}
-			if (int(botRightPos.x) < Graphics::ScreenWidth &&
-				int(botRightPos.y) >= Graphics::ScreenHeight &&
+			if (int(botRightPos.x) < BrdData::Cam_X_Size &&
+				int(botRightPos.y) >= BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) >= 0 &&
 				int(topLeftPos.y) >= 0)
 			{
 				return visibilityStatus::partBottom;
 			}
-			if (int(botRightPos.x) >= Graphics::ScreenWidth &&
-				int(botRightPos.y) < Graphics::ScreenHeight &&
+			if (int(botRightPos.x) >= BrdData::Cam_X_Size &&
+				int(botRightPos.y) < BrdData::Cam_Y_Size &&
 				int(topLeftPos.x) >= 0 &&
 				int(topLeftPos.y) >= 0)
 			{
@@ -85,9 +85,9 @@ visibilityStatus isRectVisible(const Vec2& topLeftPos, const Vec2& botRightPos)
 bool isVecVisible(const Vec2& vec)
 {
 	if (vec.x >= 0 &&
-		vec.x < Graphics::ScreenWidth &&
+		vec.x < BrdData::Cam_X_Size &&
 		vec.y >= 0 &&
-		vec.y < Graphics::ScreenHeight)
+		vec.y < BrdData::Cam_Y_Size)
 	{
 		return true;
 	}
@@ -124,7 +124,7 @@ Vec2 visibleBottomRight(const Vec2& convertedBR, visibilityStatus status)
 	float x, y;
 	if (status == visibilityStatus::partTR || status == visibilityStatus::partBR || status == visibilityStatus::partRight)
 	{
-		x = float(Graphics::ScreenWidth - 1);
+		x = float(BrdData::Cam_X_Size - 1);
 	}
 	else
 	{
@@ -132,7 +132,7 @@ Vec2 visibleBottomRight(const Vec2& convertedBR, visibilityStatus status)
 	}
 	if (status == visibilityStatus::partBL || status == visibilityStatus::partBR || status == visibilityStatus::partBottom)
 	{
-		y = float(Graphics::ScreenHeight - 1);
+		y = float(BrdData::Cam_Y_Size - 1);
 	}
 	else
 	{
