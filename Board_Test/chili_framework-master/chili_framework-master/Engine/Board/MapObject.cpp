@@ -5,7 +5,6 @@ MapObject::MapObject(const Vec2& startPos, const Surface& image)
 	model(image)
 {
 	isSet = true;
-	std::pair<int, int> dimension = image.getDimension();
 }
 
 MapObject::MapObject(const MapObject& refObj)

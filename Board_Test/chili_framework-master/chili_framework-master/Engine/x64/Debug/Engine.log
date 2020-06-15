@@ -1,2 +1,13 @@
-﻿  EmoteGame.cpp
+﻿  Board.cpp
+  MapObject.cpp
+  EmoteAnimations.cpp
+  EmoteDecor.cpp
+  EmoteGame.cpp
+  EmoteGenericData.cpp
+  EmoteHuman.cpp
+  EmoteInterface.cpp
+  EmoteMap.cpp
+  Game.cpp
+  Main.cpp
+  MainWindow.cpp
   Engine.vcxproj -> C:\Users\Utilisateur\Source\Repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\x64\Debug\Engine.exe

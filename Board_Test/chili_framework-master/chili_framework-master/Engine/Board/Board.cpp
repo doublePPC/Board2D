@@ -220,3 +220,9 @@ Vec2 Board::getBottomRight(int index)
 	return Vec2(xValue, yValue);
 }
 
+// File Save Method
+BrdData Board::getFileSaveData()
+{
+	return BrdData{ columns, rows, tileWidth, tileHeight, gridColor };
+}
+

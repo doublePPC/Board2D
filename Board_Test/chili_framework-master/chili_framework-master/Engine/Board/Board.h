@@ -25,6 +25,9 @@ public:
 	void drawPerimeter(int index, Graphics& gfx);
 	Vec2 getTopLeft(int index);
 	Vec2 getBottomRight(int index);
+
+	//File Save Method
+	BrdData getFileSaveData();
 private:
 	int columns;
 	int rows;

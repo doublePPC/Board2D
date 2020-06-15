@@ -22,5 +22,5 @@ public:
 	Surface model;
 private:
 	bool isSet = false;
-	std::vector<unsigned int> dwordList;
+	//std::vector<unsigned int> dwordList;
 };

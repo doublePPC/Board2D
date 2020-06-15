@@ -43,3 +43,28 @@ public:
 private:
 	Surface walkSign;
 };
+
+struct mapTile {
+	int xId;
+	int yId;
+};
+
+struct MapDecorData
+{
+	float topLeftX, topLeftY;
+	int decorId;
+};
+
+struct MapFileData
+{
+	static const int intSize = sizeof(int);
+	// decomposed Board datas
+	int columns, rows, tileWidth, tileHeight;
+	unsigned int gridColor;
+	// chipset reference
+	int chipsetId;
+	// decomposed Decors datas 
+	std::vector<MapDecorData> listOfDecorsDatas;
+	// mapTiles id
+	std::vector<mapTile> mapTiles;
+};
