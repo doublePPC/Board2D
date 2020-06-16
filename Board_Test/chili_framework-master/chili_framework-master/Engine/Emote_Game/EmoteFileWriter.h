@@ -1,8 +1,9 @@
 #pragma once
 #include "EmoteGenericData.h"
-#include <ostream>
+#include <fstream>
 
 class EmoteFileWriter
 {
+public:
 	static void createMapFile(std::string fileName, MapFileData dataToSave);
 };

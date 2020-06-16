@@ -1,12 +1,5 @@
-﻿  Board.cpp
-  MapObject.cpp
-  EmoteAnimations.cpp
-  EmoteDecor.cpp
+﻿  EmoteFileWriter.cpp
   EmoteGame.cpp
-  EmoteGenericData.cpp
-  EmoteHuman.cpp
-  EmoteInterface.cpp
-  EmoteMap.cpp
   Game.cpp
   Main.cpp
   MainWindow.cpp

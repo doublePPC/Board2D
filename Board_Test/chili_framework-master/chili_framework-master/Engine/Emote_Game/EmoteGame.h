@@ -3,6 +3,7 @@
 #include "..\\Windows\\Keyboard.h"
 #include "..\\Windows\\Mouse.h"
 #include "EmoteInterface.h"
+#include "EmoteFileWriter.h"
 
 class EmoteGame
 {
