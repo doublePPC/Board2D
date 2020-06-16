@@ -21,7 +21,7 @@ void EmoteFileReader::readMapFile(std::string fileName)
 		std::string readFormat(fileData, 8);
 		int sizeOfInt = fileData[8];
 		
-		bool dude = true;
+		delete &fileData;
 	}
 	else
 	{
