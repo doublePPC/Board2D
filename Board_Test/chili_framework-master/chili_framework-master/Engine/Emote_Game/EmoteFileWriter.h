@@ -1,6 +1,6 @@
 #pragma once
 #include "EmoteGenericData.h"
-#include <fstream>
+
 
 class EmoteFileWriter
 {

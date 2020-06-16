@@ -4,6 +4,7 @@
 #include "..\\Windows\\Mouse.h"
 #include "EmoteInterface.h"
 #include "EmoteFileWriter.h"
+#include "EmoteFileReader.h"
 
 class EmoteGame
 {

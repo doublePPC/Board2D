@@ -139,6 +139,7 @@
     <ClInclude Include="Board\Board.h" />
     <ClInclude Include="Board\BoardGenericData.h" />
     <ClInclude Include="Chili_Other_Stuff\ChiliException.h" />
+    <ClInclude Include="Emote_Game\EmoteFileReader.h" />
     <ClInclude Include="Emote_Game\EmoteFileWriter.h" />
     <ClInclude Include="Emote_Game\EmoteInterface.h" />
     <ClInclude Include="Sounds_Graphics\PixelEffect.h" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="Board\Board.cpp" />
     <ClCompile Include="Board\BoardGenericData.cpp" />
+    <ClCompile Include="Emote_Game\EmoteFileReader.cpp" />
     <ClCompile Include="Emote_Game\EmoteFileWriter.cpp" />
     <ClCompile Include="Emote_Game\EmoteInterface.cpp" />
     <ClCompile Include="Windows\COMInitializer.cpp" />

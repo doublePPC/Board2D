@@ -1,6 +1,7 @@
 #pragma once
 #include "..\\Board\\Board.h"
 #include "..\\Board\\MapObject.h"
+#include <fstream>
 
 enum class Pathing
 {

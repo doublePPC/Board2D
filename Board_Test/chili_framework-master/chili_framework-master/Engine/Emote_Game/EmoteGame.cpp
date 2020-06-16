@@ -72,6 +72,10 @@ void EmoteGame::update(Keyboard& kbd, const Mouse& mouse, float dt)
     {
         EmoteFileWriter::createMapFile("test", MapFileData{});
     }
+    if (kbd.OneTimeKeyPress('G'))
+    {
+        EmoteFileReader::readMapFile("test");
+    }
     for (int i = 0; i < listCharacters.size(); i++)
     {
         listCharacters[i].update(dt);

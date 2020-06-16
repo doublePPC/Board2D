@@ -1,2 +1,3 @@
-﻿  EmoteFileWriter.cpp
+﻿  EmoteFileReader.cpp
+C:\Users\Utilisateur\source\repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\Engine\Emote_Game\EmoteFileReader.cpp(13,16): warning C4244: 'initialisation' : conversion de 'std::streamoff' en 'int', perte possible de données
   Engine.vcxproj -> C:\Users\Utilisateur\Source\Repos\Board2D\Board_Test\chili_framework-master\chili_framework-master\x64\Debug\Engine.exe
