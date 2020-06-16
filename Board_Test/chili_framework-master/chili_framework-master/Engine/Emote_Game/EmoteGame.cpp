@@ -70,7 +70,7 @@ void EmoteGame::update(Keyboard& kbd, const Mouse& mouse, float dt)
     }
     if (kbd.OneTimeKeyPress('F'))
     {
-        //EmoteFileWriter::createMapFile("test", MapFileData{});
+        EmoteFileWriter::createMapFile("test", MapFileData{});
     }
     for (int i = 0; i < listCharacters.size(); i++)
     {
