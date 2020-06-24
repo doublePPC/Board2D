@@ -226,3 +226,55 @@ BrdData Board::getFileSaveData()
 	return BrdData{ columns, rows, tileWidth, tileHeight, gridColor };
 }
 
+unsigned char* Board::save()
+{
+	BrdData dataToSave = this->getFileSaveData();
+	int dataSize = sizeof(dataToSave);
+	unsigned char* dataBitSet = new unsigned char[sizeof(dataSize)];
+	int cursor = 0;
+
+	int* colLoc = (int*)(&dataBitSet[cursor]);
+	*colLoc = dataToSave.Columns;
+	cursor += sizeof(int);
+
+	assert(cursor + sizeof(int) < dataSize);
+	int* rowLoc = (int*)(&dataBitSet[cursor]);
+	*rowLoc = dataToSave.Rows;
+	cursor += sizeof(int);
+
+	assert(cursor + sizeof(int) < dataSize);
+	int* widLoc = (int*)(&dataBitSet[cursor]);
+	*widLoc = dataToSave.Tile_Width;
+	cursor += sizeof(int);
+
+	assert(cursor + sizeof(int) < dataSize);
+	int* heiLoc = (int*)(&dataBitSet[cursor]);
+	*heiLoc = dataToSave.Tile_Height;
+	cursor += sizeof(int);
+
+	assert(cursor + sizeof(unsigned int) <= dataSize);
+	unsigned int* lorLoc = (unsigned int*)(&dataBitSet[cursor]);
+	*lorLoc = dataToSave.Grid_DefaultColor.dword;
+	cursor += sizeof(unsigned int);
+
+	return dataBitSet;
+}
+
+Board Board::load(unsigned char* data)
+{
+	BrdData datas;
+	int cursor = 0;
+
+	datas.Columns = BitDataConverter::charTo4ByteInt(data, cursor);
+	cursor += 4;
+	datas.Rows = BitDataConverter::charTo4ByteInt(data, cursor);
+	cursor += 4;
+	datas.Tile_Width = BitDataConverter::charTo4ByteInt(data, cursor);
+	cursor += 4;
+	datas.Tile_Height = BitDataConverter::charTo4ByteInt(data, cursor);
+	cursor += 4;
+	datas.Grid_DefaultColor = Color(BitDataConverter::charTo4ByteUint(data, cursor));
+
+	return Board(datas);
+}
+

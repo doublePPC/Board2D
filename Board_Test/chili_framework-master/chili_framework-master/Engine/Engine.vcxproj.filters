@@ -144,6 +144,9 @@
     <ClInclude Include="Emote_Game\EmoteFileReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Generic\Bit2DataConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -219,6 +222,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Emote_Game\EmoteFileReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generic\Bit2DataConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

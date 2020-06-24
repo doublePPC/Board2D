@@ -63,3 +63,8 @@ Vec2 EmoteMap::getCameraTopLeft()
 {
 	return board.getCamTopLeft();
 }
+
+Board EmoteMap::getBoard()
+{
+	return board;
+}

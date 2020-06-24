@@ -35,6 +35,8 @@ public:
 	void update(float xScroll, float yScroll, float dt);
 	void drawBackground(Graphics& gfx);
 	Vec2 getCameraTopLeft();
+
+	Board getBoard();
 private:
 	Board board;
 	Surface& chipSet;

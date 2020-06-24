@@ -142,6 +142,7 @@
     <ClInclude Include="Emote_Game\EmoteFileReader.h" />
     <ClInclude Include="Emote_Game\EmoteFileWriter.h" />
     <ClInclude Include="Emote_Game\EmoteInterface.h" />
+    <ClInclude Include="Generic\Bit2DataConverter.h" />
     <ClInclude Include="Sounds_Graphics\PixelEffect.h" />
     <ClInclude Include="Windows\ChiliWin.h" />
     <ClInclude Include="Generic\Colors.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Emote_Game\EmoteFileReader.cpp" />
     <ClCompile Include="Emote_Game\EmoteFileWriter.cpp" />
     <ClCompile Include="Emote_Game\EmoteInterface.cpp" />
+    <ClCompile Include="Generic\Bit2DataConverter.cpp" />
     <ClCompile Include="Windows\COMInitializer.cpp" />
     <ClCompile Include="Chili_Other_Stuff\DXErr.cpp" />
     <ClCompile Include="Emote_Game\EmoteAnimations.cpp" />

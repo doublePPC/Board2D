@@ -15,6 +15,7 @@ void EmoteFileWriter::createMapFile(std::string fileName, MapFileData dataToSave
 		// store size of int to know if ints are saved with 8 bytes or 4
 		char intSize = char(sizeof(int));
 		mapFile.write((char*) &intSize, sizeof(intSize));
+		// get the size of every map data
 	}
 	else
 	{

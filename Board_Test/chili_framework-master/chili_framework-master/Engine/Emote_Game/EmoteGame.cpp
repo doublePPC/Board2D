@@ -76,6 +76,12 @@ void EmoteGame::update(Keyboard& kbd, const Mouse& mouse, float dt)
     {
         EmoteFileReader::readMapFile("test");
     }
+    if (kbd.OneTimeKeyPress('T'))
+    {
+        unsigned char* data = listMaps[0].getBoard().save();
+        Board newBoard = Board::load(data);
+        delete data;
+    }
     for (int i = 0; i < listCharacters.size(); i++)
     {
         listCharacters[i].update(dt);

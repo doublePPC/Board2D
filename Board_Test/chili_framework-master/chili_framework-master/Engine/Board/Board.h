@@ -28,6 +28,8 @@ public:
 
 	//File Save Method
 	BrdData getFileSaveData();
+	unsigned char* save();
+	static Board load(unsigned char* data);
 private:
 	int columns;
 	int rows;

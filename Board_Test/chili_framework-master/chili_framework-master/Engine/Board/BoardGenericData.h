@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\Sounds_Graphics\\Graphics.h"
+#include "..\\Generic\\Bit2DataConverter.h"
 #include <vector>
 
 // this header file contains structs for data transportation from class to class about board datas
